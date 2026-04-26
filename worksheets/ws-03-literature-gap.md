@@ -77,17 +77,20 @@ Membandingkan deep learning 2024 dengan decision tree sederhana tanpa justifikas
 ```
 LITERATURE MAPPING
 
-Topik      : ____________________
-Database   : ____________________
-Query      : ____________________
-Tahun      : ____________________
-Hasil awal : ____ paper → Screening → ____ paper final
+Topik : Keamanan IoT pada MQTT (TLS vs DTLS)
+Database : Google Scholar
+Query : ("IoT security" OR "MQTT security") AND ("TLS" OR "DTLS") AND ("performance" OR "overhead") NOT ("medical")
+Tahun : 2020–2025
+Hasil awal : 30 paper → Screening → 5 paper final
 
 Literature Matrix (concept-centric):
 
 | Study | Tahun | Method | Data | Result | Limitation |
-|-------|-------|--------|------|--------|------------|
-|       |       |        |      |        |            |
+| Kim et al.| 	2020|	TLS pada MQTT|	Dataset jaringan IoT	Latensi meningkat 20% |Tidak bandingkan DTLS| 
+Singh et al.|	2021	|DTLS untuk IoT|	Simulasi	Lebih ringan dari TLS	Tidak diuji di MQTT
+Zhang et al.|	2022|	CNN untuk deteksi intrusi IoT	KDD Dataset	Akurasi 94%	Dataset lama
+Lee et al.| 2023	|Hybrid security IoT	Dataset real IoT	Keamanan meningkat	Resource tinggi
+Ahmed et al.|	2024|	Lightweight encryption	Simulasi IoT	Overhead rendah	Belum dibanding TLS/DTLS   
 
 Pola yang ditemukan:
   Metode dominan     : ____________________
@@ -167,7 +170,7 @@ Pilih 2 baseline dari literatur yang sudah dibaca.
 | 2 | | | | | |
 
 **Apakah pemilihan baseline ini bisa dianggap straw man?** [ ] Ya / [ ] Tidak
-> Justifikasi: ________________________________________
+> Justifikasi: Kedua baseline merupakan metode yang benar-benar digunakan dalam praktik dan literatur, sehingga perbandingan adil.
 
 ---
 
@@ -176,5 +179,5 @@ Pilih 2 baseline dari literatur yang sudah dibaca.
 > Apa perbedaan antara "belum ada yang meneliti ini" (klaim tanpa bukti) dengan research gap yang valid? Bagaimana cara membuktikan bahwa sebuah gap benar-benar ada?
 
 **Jawaban:**
-> ___________________________________________________
+> Perbedaan antara klaim “belum ada yang meneliti ini” dengan research gap yang valid adalah bahwa klaim tanpa bukti hanya berupa asumsi, sedangkan research gap harus didukung oleh hasil pencarian literatur yang sistematis. Gap yang valid ditunjukkan dengan adanya pola dari beberapa penelitian yang memiliki keterbatasan serupa, misalnya tidak adanya perbandingan metode atau penggunaan dataset yang tidak representatif. Cara membuktikan gap adalah dengan mendokumentasikan proses pencarian (query, database, tahun), menganalisis beberapa paper secara concept-centric, lalu menunjukkan secara jelas keterbatasan yang berulang sehingga dapat disimpulkan bahwa masih ada ruang penelitian yang belum terjawab.
 > ___________________________________________________
