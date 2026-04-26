@@ -65,21 +65,23 @@ Nama Peneliti    : Amelia Putri Azzahra
 Tanggal          : 06 April 2026
 
 1. Ketika membaca klaim "metode X 95% akurat":
-   - Pertanyaan pertama saya: ____________________
-   - Data yang dibutuhkan untuk verifikasi: ____________________
+   - Pertanyaan pertama saya: Apakah akurasi tersebut diuji pada dataset yang seimbang dan apakah dibandingkan dengan metode lain secara adil?
+Data yang dibutuhkan untuk verifikasi:
+   - Data yang dibutuhkan untuk verifikasi: Metode evaluasi (cross-validation/test set), confusion matrix, serta perbandingan dengan baseline.
 
 2. Posisi paradigma:
-   - Pendekatan: [ ] Positivis  [ ] Interpretivis  [ ] Design Science  [ ] Mixed
-   - Alasan: ____________________
+   - Pendekatan: Positivis dan Design Science
+   - Alasan: Karena penelitian di bidang TI umumnya menggunakan data kuantitatif untuk menguji hipotesis (positivis) serta membangun model atau sistem untuk meningkatkan performa (design science).
 
 3. Identifikasi distorsi:
-   - Asumsi tersembunyi: ____________________
-   - Sumber bias potensial: ____________________
-   - Langkah mitigasi: ____________________
-
+   - Asumsi tersembunyi: Dataset dianggap mewakili kondisi dunia nyata.
+   - Sumber bias potensial:Sampling bias (data tidak beragam), overfitting, dan pemilihan metrik yang tidak tepat.
+   - Langkah mitigasi: Menggunakan dataset beragam, cross-validation, dan evaluasi dengan beberapa metrik (precision, recall, F1-score).
+  
 4. Komitmen etika:
-   - Data yang tidak akan dimanipulasi: ____________________
-   - Batasan yang diakui sejak awal: ____________________
+   - Data yang tidak akan dimanipulasi: Hasil eksperimen, termasuk data yang tidak sesuai harapan (negative result).
+   - Batasan yang diakui sejak awal: Keterbatasan dataset, model, serta lingkungan pengujian.
+   
 ```
 
 ---
@@ -93,23 +95,25 @@ Pilih satu paper riset di bidang TI yang mengklaim "metode X meningkatkan perfor
 > **Contoh domain TI:** "Deteksi anomali lalu-lintas jaringan menggunakan CNN — akurasi meningkat 94% vs baseline SVM 87%." Distorsi potensial: apakah dataset normal/anomali seimbang? Apakah hanya diuji pada satu vendor traffic?
 
 **Paper yang dipilih:**
-> Judul: _______________________________________________
-> Penulis (Tahun): ______________________________________
-> Sumber/Link DOI: _____________________________________
+> Judul:Network Intrusion Detection Using Deep Learning: A Review
+> Penulis (Tahun):Kim et al. (2020)
+> Sumber/Link DOI:
 
 | Tahap | Apa yang Dilakukan | Potensi Distorsi |
 |-------|-------------------|-----------------|
-| Reality → Data | *Contoh: Kumpulkan log server 30 hari* | *Contoh: Hanya ambil jam sibuk* |
-| Data → Processing | | |
-| Processing → Analysis | | |
-| Analysis → Inference | | |
-| Inference → Knowledge | | |
+| Reality → Data |Mengambil dataset trafik jaringan (misalnya KDD Cup) | Dataset lama, tidak mencerminkan kondisi terbaru |
+| Data → Processing |Normalisasi dan pembersihan data | Menghapus data penting (outlier)|
+| Processing → Analysis |Melatih model CNN | (outlier)Overfitting pada dataset |
+| Analysis → Inference | Membandingkan akurasi dengan metode lain| Perbandingan tidak adil|
+| Inference → Knowledge |Menyimpulkan CNN lebih baik | Generalisasi berlebihan |
 
-**Distorsi paling besar di tahap:** ________________________
+**Distorsi paling besar di tahap:**  Data → Processing
 
 **Dua distorsi spesifik yang teridentifikasi:**
-1. ___________________________________________________
-2. ___________________________________________________
+1. Dataset tidak representatif (dataset lama)
+2. Penghapusan outlier tanpa alasan yang jelas
+
+
 
 ---
 
@@ -119,29 +123,29 @@ Skenario: Seorang peneliti menemukan bahwa jika 3 data point outlier dihapus, ha
 
 | Perspektif | Analisis |
 |------------|---------|
-| Kejujuran ilmiah | *Contoh: Laporkan kedua versi (dengan dan tanpa outlier)* |
-| Transparansi | |
-| Peer review | |
+| Kejujuran ilmiah | Harus melaporkan hasil dengan dan tanpa outlier |
+| Transparansi |Menjelaskan alasan penghapusan outlier secara jelas |
+| Peer review |Reviewer dapat menilai apakah penghapusan valid |
 
 **Keputusan akhir dan justifikasi:**
-> ___________________________________________________
+> Outlier boleh dihapus hanya jika terbukti merupakan kesalahan data atau noise, dan harus dilaporkan kedua hasilnya agar penelitian tetap transparan dan dapat dipercaya.
 
 ---
 
 ## Latihan 3 — Posisi Paradigma
 
-**Topik riset:** ________________________________________
+**Topik riset:** Deteksi Anomali Jaringan Menggunakan CNN
 
 > **Skala 1–5:** 1 = tidak sesuai sama sekali dengan topik ini, 5 = sangat sesuai dan dominan digunakan pada riset bertopik serupa.
 
 | Kriteria | Positivis | Interpretivis | Design Science |
 |----------|-----------|---------------|----------------|
-| Kesesuaian dengan topik (1–5) | *Contoh: 4 — topik kuantitatif, cocok uji hipotesis* | *Contoh: 2 — topik tidak studi makna/konteks* | *Contoh: 5 — membangun artefak untuk uji klaim* |
-| Jenis data yang dikumpulkan | *Metrik numerik, log eksperimen* | *Wawancara, observasi kualitatif* | *Hasil uji artefak, komparasi kinerja* |
-| Limitasi paradigma | | | |
+| Kesesuaian dengan topik (1–5) | 5 — berbasis data dan eksperimen | 1 — tidak fokus pada makna | 5 — membangun model CNN
+| Jenis data yang dikumpulkan | Log jaringan, akurasi, precision | Wawancara | Hasil performa model |
+| Limitasi paradigma |Tidak memahami konteks | Subjektif | Fokus pada artefak, bukan teori | 
 
-**Paradigma yang dipilih:** _____________________________
-**Alasan:** ____________________________________________
+**Paradigma yang dipilih:**Positivis + Design Science
+Alasan: Karena penelitian menggunakan data numerik untuk menguji performa model dan juga membangun sistem (CNN) sebagai solusi.
 
 ---
 
@@ -150,5 +154,4 @@ Skenario: Seorang peneliti menemukan bahwa jika 3 data point outlier dihapus, ha
 > Sebelum membaca materi ini, apakah pernah mempertanyakan klaim "95% akurat"? Setelah memahami rantai distorsi, pertanyaan apa yang sekarang akan diajukan saat membaca paper?
 
 **Jawaban:**
-> ___________________________________________________
-> ___________________________________________________
+> Sebelum membaca materi ini, saya belum terlalu kritis terhadap klaim seperti “95% akurat”. Setelah memahami rantai distorsi, saya akan mempertanyakan dataset, metode evaluasi, potensi bias, serta apakah hasil tersebut dapat digeneralisasi ke kondisi nyata.
