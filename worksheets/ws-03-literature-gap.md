@@ -134,11 +134,11 @@ Gunakan topik riset dari WS-02. Cari minimal 5 paper relevan menggunakan databas
 
 | # | Study | Tahun | Method | Dataset | Result | Limitasi |
 |---|-------|-------|--------|---------|--------|----------|
-| 1 | *Contoh: Rahman et al.* | *2023* | *CNN* | *ImageNet subset* | *Acc 91%* | *Hanya 3 kelas* |
-| 2 | | | | | | |
-| 3 | | | | | | |
-| 4 | | | | | | |
-| 5 | | | | | | |
+| 1 | *Contoh: Rahman et al.* | 2020 | *CNN* | *ImageNet subset* | *Acc 91%* | *Hanya 3 kelas* |
+| 2 | |Kim et al.|2021|DTLS | | |
+| 3 | | |2022 |CNN | | |
+| 4 | | |2023 |Hybrid | | |
+| 5 | | |2024 |Lightweight | | |
 
 **Pola yang terlihat — Metode dominan:**TLS & DTLS
 **Limitasi yang berulang:**Tidak ada perbandingan langsung + dataset kurang realistis
@@ -152,8 +152,8 @@ Berdasarkan tabel di Latihan 1, identifikasi gap.
 | Jenis Gap | Ditemukan? | Gap Statement |
 |-----------|-----------|---------------|
 | Performance Gap | Ya|Performa TLS menyebabkan latensi tinggi pada IoT
-| Method Gap |Ya| |Belum ada perbandingan TLS vs DTLS pada MQTT|
-| Data Gap |Ya| |Dataset banyak yang tidak realistis|
+| Method Gap |Ya|Belum ada perbandingan TLS vs DTLS pada MQTT|
+| Data Gap |Ya|Dataset banyak yang tidak realistis|
 | Context Gap |Ya|Belum diuji pada perangkat low-resource nyata|
 
 **Gap utama yang dipilih:**Method + Performance Gap
