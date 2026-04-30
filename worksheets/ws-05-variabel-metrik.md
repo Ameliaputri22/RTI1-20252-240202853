@@ -66,7 +66,7 @@ Metrik harus ditentukan **sebelum** eksperimen. Memilih metrik setelah melihat d
 ```
 VARIABLE & METRIC DEFINITION
 
-Research Question: ____________________
+Research Question:Apakah TLS 1.3 menghasilkan latensi dan penggunaan memori yang lebih rendah dibandingkan DTLS pada protokol MQTT di perangkat IoT dengan RAM <64KB?
 
 | Variabel | Tipe | Konsep | Metrik | Skala | Satuan | Cara Mengukur | Justifikasi |
 |----------|------|--------|--------|-------|--------|---------------|-------------|
@@ -87,7 +87,7 @@ Alignment Check:
 
 Gunakan RQ dari WS-04. Definisikan variabel dan metriknya.
 
-**RQ:** __________________________________________________
+**RQ:** Apakah TLS 1.3 lebih efisien dibandingkan DTLS dalam hal latensi dan penggunaan memori pada MQTT IoT?
 
 | Variabel | Tipe | Konsep Abstrak | Metrik Konkret | Skala (NOIR) | Satuan |
 |----------|------|---------------|----------------|-------------|--------|
@@ -95,9 +95,7 @@ Gunakan RQ dari WS-04. Definisikan variabel dan metriknya.
 | | DV | | | | |
 | | CV | | | | |
 
-**Apakah ada lompatan logis dalam rantai?** [ ] Ya / [ ] Tidak
-> Jika ya, di mana? ____________________________________
-
+**Apakah ada lompatan logis dalam rantai?**Tidak
 ---
 
 ## Latihan 2 — Evaluasi Metrik
@@ -107,14 +105,15 @@ Evaluasi metrik DV yang dipilih di Latihan 1 menggunakan 3 kriteria.
 | Kriteria | Skor (1-5) | Justifikasi |
 |----------|-----------|-------------|
 | Representative | *Contoh: 4 — F1-Score mewakili keseimbangan precision-recall* | |
-| Sensitive | | |
-| Feasible | | |
+| Sensitive |4 | |
+| Feasible |5| |
 
-**Apakah perlu secondary metric?** [ ] Ya / [ ] Tidak
-> Jika ya, apa dan mengapa? _____________________________
+**Apakah perlu secondary metric?**Ya
+> Jika ya, apa dan mengapa?Secondary metric:
+Throughput (jumlah data per detik) alasannya Untuk melengkapi analisis performa selain latensi dan memori
 
 **Contoh kasus ceiling effect untuk metrik ini:**
-> ___________________________________________________
+> Jika semua metode menghasilkan latensi yang hampir sama (misalnya 1–2 ms), maka metrik tidak cukup sensitif untuk membedakan performa.
 
 ---
 
@@ -136,5 +135,6 @@ Bayangkan data yang akan dikumpulkan dari eksperimen. Evaluasi 4 dimensi kualita
 > Mengapa memilih metrik setelah melihat data dianggap p-hacking? Apa bedanya dengan eksplorasi data yang sah?
 
 **Jawaban:**
-> ___________________________________________________
-> ___________________________________________________
+> Memilih metrik setelah melihat data dianggap p-hacking karena peneliti bisa secara tidak sadar memilih metrik yang mendukung hasil yang diinginkan, sehingga hasil menjadi bias dan tidak objektif. Hal ini merusak validitas penelitian karena kesimpulan tidak lagi berdasarkan desain awal eksperimen.
+
+Berbeda dengan eksplorasi data yang sah, eksplorasi dilakukan setelah analisis utama dan harus dilaporkan secara transparan sebagai temuan tambahan (exploratory), bukan sebagai bukti utama (confirmatory). Dengan demikian, eksplorasi tetap diperbolehkan selama tidak digunakan untuk memanipulasi hasil utama penelitian.
