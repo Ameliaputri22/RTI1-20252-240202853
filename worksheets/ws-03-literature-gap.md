@@ -86,33 +86,35 @@ Hasil awal : 30 paper → Screening → 5 paper final
 Literature Matrix (concept-centric):
 
 | Study | Tahun | Method | Data | Result | Limitation |
-| Kim et al.| 	2020|	TLS pada MQTT|	Dataset jaringan IoT	Latensi meningkat 20% |Tidak bandingkan DTLS| 
-Singh et al.|	2021	|DTLS untuk IoT|	Simulasi	Lebih ringan dari TLS	Tidak diuji di MQTT
-Zhang et al.|	2022|	CNN untuk deteksi intrusi IoT	KDD Dataset	Akurasi 94%	Dataset lama
-Lee et al.| 2023	|Hybrid security IoT	Dataset real IoT	Keamanan meningkat	Resource tinggi
-Ahmed et al.|	2024|	Lightweight encryption	Simulasi IoT	Overhead rendah	Belum dibanding TLS/DTLS   
+| Kim et al.| 	2020|	TLS pada MQTT|	Dataset jaringan IoT|	Latensi meningkat 20% |Tidak bandingkan DTLS| 
+Singh et al.|	2021|DTLS untuk IoT|	Simulasi	|Lebih ringan dari TLS|	Tidak diuji di MQTT|
+Zhang et al.|	2022|	CNN untuk deteksi intrusi IoT|KDD Dataset|	Akurasi 94%	|Dataset lama
+Lee et al.| 2023	|Hybrid security IoT|	Dataset real IoT|	Keamanan meningkat|	Resource tinggi
+Ahmed et al.|	2024|	Lightweight encryption|	Simulasi IoT|	Overhead rendah|	Belum dibanding TLS/DTLS  |
 
 Pola yang ditemukan:
-  Metode dominan     : ____________________
-  Dataset umum       : ____________________
-  Limitasi berulang  : ____________________
+  Metode dominan     : TLS, DTLS, dan lightweight encryption
+  Dataset umum       : Dataset simulasi dan dataset lama (KDD, NSL-KDD)
+  Limitasi berulang  :  -Tidak ada perbandingan langsung TLS vs DTLS pada MQTT
+                        -Dataset tidak realistis
+                        -Fokus hanya pada satu metode
 
 GAP IDENTIFICATION
 
-Gap 1: [Jenis: performance / method / data / context]
-  Deskripsi    : ____________________
-  Bukti        : ____________________
-  Signifikansi : ____________________
+Gap 1: (Method + Performance Gap)
+  Deskripsi    : Belum ada penelitian yang secara langsung membandingkan performa TLS 1.3 dan DTLS pada protokol MQTT
+  Bukti        :Studi hanya fokus pada salah satu metode tanpa komparasi
+  Signifikansi : Penting untuk menentukan metode keamanan paling efisien pada IoT
 
-Gap 2: [Jenis: ____]
-  Deskripsi    : ____________________
-  Bukti        : ____________________
-  Signifikansi : ____________________
+Gap 2: [Jenis:Data + Context Gap]
+  Deskripsi    :Sebagian besar penelitian menggunakan dataset simulasi atau dataset lama
+  Bukti        :Tidak banyak studi menggunakan data real-time IoT
+  Signifikansi :Hasil penelitian mungkin tidak relevan dengan kondisi dunia nyata
 
 Baseline Selection:
 | Baseline | Relevansi | Representatif | Source |
-|----------|-----------|---------------|--------|
-|          |           |               |        |
+|DTLS pada IoT|Alternatif TLS untuk perangkat ringan|Banyak digunakan pada IoT low-resource|Singh et al., 202|
+| TLS pada MQTT|Digunakan untuk keamanan komunikasi IoT|Umum digunakan di banyak penelitian|Kim et al., 2020|
 ```
 
 ---
@@ -126,9 +128,9 @@ Gunakan topik riset dari WS-02. Cari minimal 5 paper relevan menggunakan databas
 > - Tulis query Boolean yang digunakan: contoh `("object detection" OR "image classification") AND ("edge computing") NOT ("medical")`. Dokumentasikan query secara eksplisit.
 > - Akses gratis: buka Google Scholar → cari judul paper → klik [PDF] jika tersedia, atau akses lewat campus VPN
 
-**Topik riset:** ________________________________________
-**Query pencarian:** ____________________________________
-**Database:** ___________________________________________
+**Topik riset:**Keamanan MQTT pada IoT
+**Query pencarian:** ("MQTT security" AND "TLS" AND "DTLS" AND "IoT performance")
+**Database:** Google Scholar
 
 | # | Study | Tahun | Method | Dataset | Result | Limitasi |
 |---|-------|-------|--------|---------|--------|----------|
@@ -138,8 +140,8 @@ Gunakan topik riset dari WS-02. Cari minimal 5 paper relevan menggunakan databas
 | 4 | | | | | | |
 | 5 | | | | | | |
 
-**Pola yang terlihat — Metode dominan:** ___________________
-**Limitasi yang berulang:** ______________________________
+**Pola yang terlihat — Metode dominan:**TLS & DTLS
+**Limitasi yang berulang:**Tidak ada perbandingan langsung + dataset kurang realistis
 
 ---
 
@@ -149,14 +151,14 @@ Berdasarkan tabel di Latihan 1, identifikasi gap.
 
 | Jenis Gap | Ditemukan? | Gap Statement |
 |-----------|-----------|---------------|
-| Performance Gap | [ ] Ya / [ ] Tidak | *Contoh: Akurasi turun di bawah 80% untuk kelas minoritas* |
-| Method Gap | [ ] Ya / [ ] Tidak | |
-| Data Gap | [ ] Ya / [ ] Tidak | |
-| Context Gap | [ ] Ya / [ ] Tidak | |
+| Performance Gap | Ya|Performa TLS menyebabkan latensi tinggi pada IoT
+| Method Gap |Ya| |Belum ada perbandingan TLS vs DTLS pada MQTT|
+| Data Gap |Ya| |Dataset banyak yang tidak realistis|
+| Context Gap |Ya|Belum diuji pada perangkat low-resource nyata|
 
-**Gap utama yang dipilih:** _____________________________
-**Mengapa gap ini penting (bukan sekadar "belum ada yang meneliti")?**
-> ___________________________________________________
+**Gap utama yang dipilih:**Method + Performance Gap
+**Mengapa gap ini penting **
+> Karena pemilihan metode keamanan yang tidak tepat dapat menyebabkan sistem IoT menjadi lambat atau tidak efisien, sehingga diperlukan perbandingan yang jelas untuk menentukan solusi terbaik.
 
 ---
 
@@ -166,10 +168,10 @@ Pilih 2 baseline dari literatur yang sudah dibaca.
 
 | # | Baseline | Mengapa Relevan | Mengapa Representatif | Apakah SOTA? | Sumber |
 |---|----------|----------------|----------------------|-------------|--------|
-| 1 | *Contoh: RF + TF-IDF* | *Task sama: klasifikasi teks* | *Dipakai 6 dari 10 paper* | *Bukan, tapi common practice* | *Lee et al., 2022* |
-| 2 | | | | | |
+| 1 |TLS pada MQTT |Digunakan dalam sistem keamanan IoT|Banyak dipakai| Tidak|Kim et al., 2020|
+| 2 |DTLS pada IoT | Alternatif untuk resource rendah|Umum digunakan|Tidak|Singh et al., 2021|
 
-**Apakah pemilihan baseline ini bisa dianggap straw man?** [ ] Ya / [ ] Tidak
+**Apakah pemilihan baseline ini bisa dianggap straw man?** |tidak|
 > Justifikasi: Kedua baseline merupakan metode yang benar-benar digunakan dalam praktik dan literatur, sehingga perbandingan adil.
 
 ---
