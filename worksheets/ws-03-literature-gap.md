@@ -86,11 +86,11 @@ Hasil awal : 30 paper → Screening → 5 paper final
 Literature Matrix (concept-centric):
 
 | Study | Tahun | Method | Data | Result | Limitation |
-| Kim et al.| 	2020|	TLS pada MQTT|	Dataset jaringan IoT|	Latensi meningkat 20% |Tidak bandingkan DTLS| 
-Singh et al.|	2021|DTLS untuk IoT|	Simulasi	|Lebih ringan dari TLS|	Tidak diuji di MQTT|
-Zhang et al.|	2022|	CNN untuk deteksi intrusi IoT|KDD Dataset|	Akurasi 94%	|Dataset lama
-Lee et al.| 2023	|Hybrid security IoT|	Dataset real IoT|	Keamanan meningkat|	Resource tinggi
-Ahmed et al.|	2024|	Lightweight encryption|	Simulasi IoT|	Overhead rendah|	Belum dibanding TLS/DTLS  |
+| Kim et al.|2020|TLS pada MQTT|Dataset jaringan IoT|Latensi meningkat 20%|Tidak bandingkan DTLS| 
+Singh et al.|2021|DTLS untuk IoT|Simulasi|Lebih ringan dari TLS|Tidak diuji di MQTT|
+Zhang et al.|2022|CNN untuk deteksi intrusi IoT|KDD Dataset|Akurasi 94%|Dataset lama
+Lee et al.|2023|Hybrid security IoT|Dataset real IoT|	Keamanan meningkat|Resource tinggi
+Ahmed et al|2024|Lightweight encryption|Simulasi IoT|	Overhead rendah|Belum dibanding TLS/DTLS|
 
 Pola yang ditemukan:
   Metode dominan     : TLS, DTLS, dan lightweight encryption
@@ -134,11 +134,11 @@ Gunakan topik riset dari WS-02. Cari minimal 5 paper relevan menggunakan databas
 
 | # | Study | Tahun | Method | Dataset | Result | Limitasi |
 |---|-------|-------|--------|---------|--------|----------|
-| 1 | *Contoh: Rahman et al.* | 2020 | *CNN* | *ImageNet subset* | *Acc 91%* | *Hanya 3 kelas* |
-| 2 | |Kim et al.|2021|DTLS | | |
-| 3 | | |2022 |CNN | | |
-| 4 | | |2023 |Hybrid | | |
-| 5 | | |2024 |Lightweight | | |
+| 1 | |Kim et al.|2020|TLS|IOT traffic|Latensi tinggi|
+| 2 | |Singh et al.|2021|DTLS |simulasi|lebih ringan|
+| 3 | | Zhang et al.|2022 |CNN |KDD|akurasi tinggi|
+| 4 | |Lee et al.|2023 |Hybrid |Real IOT|Aman|
+| 5 | |Ahmad et al.|2024 |Lightweight|Simulasi|Efisien|
 
 **Pola yang terlihat — Metode dominan:**TLS & DTLS
 **Limitasi yang berulang:**Tidak ada perbandingan langsung + dataset kurang realistis
