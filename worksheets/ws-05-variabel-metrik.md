@@ -70,15 +70,15 @@ Research Question:Apakah TLS 1.3 menghasilkan latensi dan penggunaan memori yang
 
 | Variabel | Tipe | Konsep | Metrik | Skala | Satuan | Cara Mengukur | Justifikasi |
 |----------|------|--------|--------|-------|--------|---------------|-------------|
-|          | IV   |        |        |       |        |               |             |
+|Jenis protokol| IV   |        |        |       |        |               |             |
 |          | DV   |        |        |       |        |               |             |
 |          | CV   |        |        |       |        |               |             |
 
 Alignment Check:
   RQ → Concept → Variable → Metric → Data → Result
-  [ ] Setiap langkah terdokumentasi
-  [ ] Tidak ada "lompatan logis"
-  [ ] Metrik mengukur apa yang dimaksud (construct validity)
+  - [v ] Setiap langkah terdokumentasi
+  - [ ] Tidak ada "lompatan logis"
+  - [ ] Metrik mengukur apa yang dimaksud (construct validity)
 ```
 
 ---
