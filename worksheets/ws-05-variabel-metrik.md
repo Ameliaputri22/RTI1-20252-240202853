@@ -70,15 +70,15 @@ Research Question:Apakah TLS 1.3 menghasilkan latensi dan penggunaan memori yang
 
 | Variabel | Tipe | Konsep | Metrik | Skala | Satuan | Cara Mengukur | Justifikasi |
 |----------|------|--------|--------|-------|--------|---------------|-------------|
-|Jenis protokol| IV   |        |        |       |        |               |             |
-|          | DV   |        |        |       |        |               |             |
-|          | CV   |        |        |       |        |               |             |
+|Jenis protokol|IV|Metode keamanan komunikasi|TLS 1.3 vs DTLS|Nominal|-|Konfigurasi sistem eksperimen|Variabel utama yang dibandingkan|
+|Latensi|DV|Kecepatan komunikasi|Waktu pengiriman data|Ratio|ms|Mengukur waktu request-response MQTT|Mewakili performa sistem|
+|Ukuran data|CV|Beban komunikasi|Ukuran paket data|Ratio|Byte|Mengontrol ukuran payload|Menghindari bias hasil|
 
 Alignment Check:
   RQ → Concept → Variable → Metric → Data → Result
-  - [v ] Setiap langkah terdokumentasi
-  - [ ] Tidak ada "lompatan logis"
-  - [ ] Metrik mengukur apa yang dimaksud (construct validity)
+  - [v] Setiap langkah terdokumentasi
+  - [v] Tidak ada "lompatan logis"
+  - [v] Metrik mengukur apa yang dimaksud (construct validity)
 ```
 
 ---
@@ -91,9 +91,9 @@ Gunakan RQ dari WS-04. Definisikan variabel dan metriknya.
 
 | Variabel | Tipe | Konsep Abstrak | Metrik Konkret | Skala (NOIR) | Satuan |
 |----------|------|---------------|----------------|-------------|--------|
-| *Contoh: Jenis model* | *IV* | *Pendekatan klasifikasi* | *Categorical: CNN vs RF* | *Nominal* | *—* |
-| | DV | | | | |
-| | CV | | | | |
+|Jenis protokol|IV|Metode keamanan|TLS vs DTLS|Nominal|—|
+|Latensi|DV|Kecepatan sistem|Waktu kirim data|Ratio|ms|
+|Ukuran data|CV|Beban sistem |Payload size|Ratio|Byte|
 
 **Apakah ada lompatan logis dalam rantai?**Tidak
 ---
@@ -104,9 +104,9 @@ Evaluasi metrik DV yang dipilih di Latihan 1 menggunakan 3 kriteria.
 
 | Kriteria | Skor (1-5) | Justifikasi |
 |----------|-----------|-------------|
-| Representative | *Contoh: 4 — F1-Score mewakili keseimbangan precision-recall* | |
-| Sensitive |4 | |
-| Feasible |5| |
+| Representative |5|Latensi & memori langsung merepresentasikan performa IoT|
+| Sensitive |4 |Perubahan kecil masih bisa terdeteksi|
+| Feasible |5|Mudah diukur dengan tools monitoring|
 
 **Apakah perlu secondary metric?**Ya
 > Jika ya, apa dan mengapa?Secondary metric:
@@ -123,10 +123,10 @@ Bayangkan data yang akan dikumpulkan dari eksperimen. Evaluasi 4 dimensi kualita
 
 | Dimensi | Pertanyaan | Jawaban | Strategi Mitigasi |
 |---------|-----------|---------|------------------|
-| Completeness | *Apakah semua data point terkumpul?* | | |
-| Consistency | *Apakah ada kontradiksi internal?* | | |
-| Validity | *Apakah benar-benar mengukur yang dimaksud?* | | |
-| Representativeness | *Apakah sampel mewakili populasi target?* | | |
+| Completeness | Apakah semua data point terkumpul?|Bisa tidak lengkap|Logging otomatis|
+| Consistency | Apakah ada kontradiksi?|Bisa terjadi noise|Ulangi eksperimen|
+| Validity | Apakah benar-benar mengukur yang dimaksud?|Ya|Gunakan alat ukur valid|
+| Representativeness | *Apakah sampel mewakili populasi target?|Terbatas|Gunakan variasi skenario|
 
 ---
 
