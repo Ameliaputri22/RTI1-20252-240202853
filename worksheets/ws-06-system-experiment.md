@@ -80,12 +80,12 @@ Jika variabel tidak bisa di-map ke komponen apapun → arsitektur perlu didesain
 ```
 SYSTEM-EXPERIMENT MAPPING
 
-Research Question: ____________________
+Research Question:Apakah TLS 1.3 menghasilkan latensi dan penggunaan memori yang lebih rendah dibandingkan DTLS pada protokol MQTT di perangkat IoT dengan RAM <64KB?
 
 Variable → Component Mapping:
 | Variabel | Tipe | Komponen Sistem | Cara Manipulasi/Pengukuran |
 |----------|------|-----------------|---------------------------|
-|          | IV   |                 |                           |
+|Jenis protokol keamanan|IV| Modul komunikasi MQTT|Mengubah config TLS ↔ DTLS|
 |          | DV   |                 |                           |
 |          | CV   |                 |                           |
 
@@ -96,9 +96,9 @@ Variable → Component Mapping:
   [ ] Reproducibility — Setup bisa direkonstruksi
 
 Experimental Setup:
-  Input data     : ____________________
-  Parameter      : ____________________
-  Output format  : ____________________
+  Input data     :Data sensor IoT simulasi
+  Parameter      :TLS/DTLS, ukuran payload, jumlah request
+  Output format  :CSV berisi latensi dan penggunaan memori
 ```
 
 ---
@@ -107,7 +107,7 @@ Experimental Setup:
 
 Gunakan RQ dan variabel dari WS-05. Petakan ke komponen sistem.
 
-**RQ:** __________________________________________________
+**RQ:** Apakah TLS 1.3 lebih efisien dibandingkan DTLS pada MQTT IoT?
 
 | Variabel | Tipe | Komponen Sistem | Cara Manipulasi / Pengukuran |
 |----------|------|-----------------|---------------------------|
@@ -115,9 +115,7 @@ Gunakan RQ dan variabel dari WS-05. Petakan ke komponen sistem.
 | | DV | | |
 | | CV | | |
 
-**Apakah semua variabel bisa di-map?** [ ] Ya / [ ] Tidak
-> Jika tidak, komponen apa yang perlu ditambahkan? _________
-
+**Apakah semua variabel bisa di-map?** Ya
 ---
 
 ## Latihan 2 — 4 Prinsip Desain
@@ -126,14 +124,14 @@ Evaluasi desain sistem terhadap 4 prinsip.
 
 | Prinsip | Status | Bukti / Penjelasan |
 |---------|--------|-------------------|
-| Traceability | *Contoh: ✅ — setiap modul punya label variabel* | |
-| Modularity | | |
-| Controllability | | |
-| Measurability | | |
+| Traceability | *Contoh: ✅ — setiap modul punya label variabel* |Semua komponen terkait langsung dengan variabel|
+| Modularity | |TLS dan DTLS bisa diganti lewat config|
+| Controllability | |Payload dan request dikontrol tetap|
+| Measurability | |Sistem otomatis mencatat log eksperimen|
 
-**Prinsip mana yang paling sulit dipenuhi?** _______________
+**Prinsip mana yang paling sulit dipenuhi?**Controllability
 **Strategi untuk mengatasinya:**
-> ___________________________________________________
+> Menggunakan konfigurasi eksperimen yang sama pada setiap percobaan, termasuk payload, jumlah request, dan kondisi jaringan agar hasil tetap konsisten.
 
 ---
 
@@ -147,13 +145,13 @@ Jika sistem memiliki 3 komponen utama, rencanakan ablation study.
 | Kondisi | Komponen A | Komponen B | Komponen C | Hasil yang Diharapkan |
 |---------|-----------|-----------|-----------|----------------------|
 | Full | *Contoh: ✅ CNN* | *Contoh: ✅ Temporal features* | *Contoh: ✅ Z-score norm* | *Baseline penuh* |
-| – A | ❌ (ganti RF) | ✅ | ✅ | |
-| – B | ✅ | ❌ (tanpa temporal) | ✅ | |
-| – C | ✅ | ✅ | ❌ (tanpa normalisasi) | |
+| – A | ❌ (ganti RF) | ✅ | ✅ |Keamanan turun, performa naik|
+| – B | ✅ | ❌ (tanpa temporal) | ✅ |Tidak ada data penggunaan RAM|
+| – C | ✅ | ✅ | ❌ (tanpa normalisasi) |Data kurang stabil|
 
-**Komponen mana yang diprediksi paling berkontribusi?** _____
+**Komponen mana yang diprediksi paling berkontribusi?**Komponen A (TLS/DTLS)
 **Mengapa?**
-> ___________________________________________________
+> Karena komponen ini merupakan variabel utama yang secara langsung memengaruhi latensi dan penggunaan memori pada sistem IoT.
 
 ---
 
@@ -162,5 +160,6 @@ Jika sistem memiliki 3 komponen utama, rencanakan ablation study.
 > Apa risiko jika sistem dibangun seperti produk (monolitik, fitur lengkap) lalu baru dilakukan eksperimen? Mengapa arsitektur modular penting untuk riset?
 
 **Jawaban:**
-> ___________________________________________________
-> ___________________________________________________
+> Jika sistem dibangun seperti produk monolitik dengan banyak fitur tambahan, maka eksperimen menjadi sulit dikontrol karena banyak komponen saling memengaruhi. Hal ini dapat menyebabkan bias dan menyulitkan isolasi variabel penelitian.
+
+Arsitektur modular penting dalam riset karena memungkinkan peneliti mengubah satu variabel tanpa memengaruhi komponen lain. Dengan modularitas, eksperimen menjadi lebih terkontrol, reproducible, dan hasil penelitian lebih valid.
