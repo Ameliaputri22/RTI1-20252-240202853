@@ -70,7 +70,7 @@ Data yang dibutuhkan untuk verifikasi:
    - Data yang dibutuhkan untuk verifikasi: Metode evaluasi (cross-validation/test set), confusion matrix, serta perbandingan dengan baseline.
 
 2. Posisi paradigma:
-   - Pendekatan: Positivis dan Design Science
+   - Pendekatan:☑ Positivis dan ☑ Design Science
    - Alasan: Karena penelitian di bidang TI umumnya menggunakan data kuantitatif untuk menguji hipotesis (positivis) serta membangun model atau sistem untuk meningkatkan performa (design science).
 
 3. Identifikasi distorsi:
