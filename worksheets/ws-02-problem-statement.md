@@ -85,11 +85,11 @@ Masalah yang didiagnosis : Protokol keamanan seperti TLS menambah overhead yang 
 Masalah riset (researchable) : Belum ada perbandingan yang jelas mengenai efisiensi overhead antara TLS 1.3 dan DTLS pada MQTT untuk perangkat IoT dengan RAM terbatas.
 Variabel yang terukur : Latensi (ms), penggunaan memori (KB), throughput, dan tingkat keamanan
 Problem Quality Check
-  [ ] Clarity — Apakah satu orang membaca akan paham?
-  [ ] Measurability — Apakah ada metrik kuantitatif?
-  [ ] Relevance — Apakah penting untuk domain?
-  [ ] Testability — Apakah bisa gagal?
-  [ ] Impact — Apakah ada kontribusi jika terjawab?
+  [☑] Clarity — Apakah satu orang membaca akan paham?
+  [☑] Measurability — Apakah ada metrik kuantitatif?
+  [☑] Relevance — Apakah penting untuk domain?
+  [☑] Testability — Apakah bisa gagal?
+  [☑] Impact — Apakah ada kontribusi jika terjawab?
 
 Problem Statement (1 paragraf):
   Dalam sistem IoT yang menggunakan protokol MQTT, penerapan mekanisme keamanan seperti TLS seringkali menimbulkan overhead yang signifikan pada perangkat dengan keterbatasan sumber daya, terutama pada memori dan latensi komunikasi. Hal ini menjadi masalah karena perangkat IoT umumnya memiliki RAM yang sangat terbatas (<64KB), sehingga penggunaan protokol keamanan dapat mempengaruhi performa sistem secara keseluruhan. Meskipun keamanan merupakan aspek penting, belum terdapat studi yang secara komprehensif membandingkan efisiensi antara TLS 1.3 dan DTLS dalam konteks MQTT pada perangkat IoT dengan resource terbatas. Oleh karena itu, penelitian ini bertujuan untuk mengukur dan membandingkan overhead kedua protokol tersebut berdasarkan metrik seperti latensi, penggunaan memori, dan throughput guna menentukan solusi yang paling optimal.
@@ -111,7 +111,7 @@ Pilih satu topik di bidang TI yang diminati. Transformasikan melalui 5 tahap Pro
 | Researchable Problem |Belum ada perbandingan efisiensi TLS vs DTLS pada MQTT di perangkat low-resource |
 | Measurable Variable |Latensi, penggunaan RAM, throughput |
 
-**Apakah terjebak solution-first thinking?** [ X]  Ya / [ ] Tidak
+**Apakah terjebak solution-first thinking?** ☑ Tidak
 ---
 
 ## Latihan 2 — System Context Decomposition
@@ -122,7 +122,7 @@ Gambarkan konteks sistem dari masalah riset di Latihan 1.
 |----------|----------|
 | Input |Data sensor dari perangkat IoT |
 | Process | Pengiriman data melalui MQTT dengan enkripsi|
-| Output | Pengiriman data melalui MQTT dengan enkripsi|
+| Output |Data diterima server|
 | Outcome | Keamanan dan efisiensi sistem|
 | Constraints |RAM kecil, bandwidth terbatas |
 | Stakeholders |Developer, pengguna, peneliti |
