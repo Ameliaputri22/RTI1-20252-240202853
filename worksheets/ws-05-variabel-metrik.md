@@ -72,13 +72,14 @@ Research Question:Apakah TLS 1.3 menghasilkan latensi dan penggunaan memori yang
 |----------|------|--------|--------|-------|--------|---------------|-------------|
 |Jenis protokol|IV|Metode keamanan komunikasi|TLS 1.3 vs DTLS|Nominal|-|Konfigurasi sistem eksperimen|Variabel utama yang dibandingkan|
 |Latensi|DV|Kecepatan komunikasi|Waktu pengiriman data|Ratio|ms|Mengukur waktu request-response MQTT|Mewakili performa sistem|
+|Penggunaan memori|DV|Efisiensi resource|RAM yang digunakan|Ratio|KB|Monitoring penggunaan memori saat proses|Penting untuk IoT low-resource|
 |Ukuran data|CV|Beban komunikasi|Ukuran paket data|Ratio|Byte|Mengontrol ukuran payload|Menghindari bias hasil|
 
 Alignment Check:
   RQ → Concept → Variable → Metric → Data → Result
-  - [v] Setiap langkah terdokumentasi
-  - [v] Tidak ada "lompatan logis"
-  - [v] Metrik mengukur apa yang dimaksud (construct validity)
+  - [☑] Setiap langkah terdokumentasi
+  - [☑] Tidak ada "lompatan logis"
+  - [☑] Metrik mengukur apa yang dimaksud (construct validity)
 ```
 
 ---
@@ -93,9 +94,10 @@ Gunakan RQ dari WS-04. Definisikan variabel dan metriknya.
 |----------|------|---------------|----------------|-------------|--------|
 |Jenis protokol|IV|Metode keamanan|TLS vs DTLS|Nominal|—|
 |Latensi|DV|Kecepatan sistem|Waktu kirim data|Ratio|ms|
+|Penggunaan memori|DV|Efisiensi resource|RAM usage|Ratio|KB|
 |Ukuran data|CV|Beban sistem |Payload size|Ratio|Byte|
 
-**Apakah ada lompatan logis dalam rantai?**Tidak
+**Apakah ada lompatan logis dalam rantai?** Tidak
 ---
 
 ## Latihan 2 — Evaluasi Metrik
@@ -109,8 +111,8 @@ Evaluasi metrik DV yang dipilih di Latihan 1 menggunakan 3 kriteria.
 | Feasible |5|Mudah diukur dengan tools monitoring|
 
 **Apakah perlu secondary metric?**Ya
-> Jika ya, apa dan mengapa?Secondary metric:
-Throughput (jumlah data per detik) alasannya Untuk melengkapi analisis performa selain latensi dan memori
+> Jika ya, apa dan mengapa? Secondary metric:Throughput (jumlah data per detik)
+> alasannya Untuk melengkapi analisis performa selain latensi dan memori
 
 **Contoh kasus ceiling effect untuk metrik ini:**
 > Jika semua metode menghasilkan latensi yang hampir sama (misalnya 1–2 ms), maka metrik tidak cukup sensitif untuk membedakan performa.
