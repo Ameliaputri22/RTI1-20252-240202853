@@ -86,14 +86,15 @@ Variable → Component Mapping:
 | Variabel | Tipe | Komponen Sistem | Cara Manipulasi/Pengukuran |
 |----------|------|-----------------|---------------------------|
 |Jenis protokol keamanan|IV| Modul komunikasi MQTT|Mengubah config TLS ↔ DTLS|
-|          | DV   |                 |                           |
-|          | CV   |                 |                           |
-
+|Latensi|DV|Logger waktu respon|Mengukur waktu request-response|
+|Penggunaan memori|DV|Memory monitor|Monitoring RAM saat proses berjalan|
+|Ukuran payload data|CV|Config ukuran data|Dikunci tetap selama eksperimen|
+|Jumlah request|CV|Traffic generator|Dibuat sama di semua percobaan|
 4 Prinsip Desain:
-  [ ] Traceability — Setiap komponen bisa ditelusuri ke variabel
-  [ ] Variable Isolation — IV bisa diubah tanpa mengubah CV
-  [ ] Measurement Integration — Pengukuran DV built-in
-  [ ] Reproducibility — Setup bisa direkonstruksi
+  [☑ ] Traceability — Setiap komponen bisa ditelusuri ke variabel
+  [☑ ] Variable Isolation — IV bisa diubah tanpa mengubah CV
+  [☑ ] Measurement Integration — Pengukuran DV built-in
+  [☑ ] Reproducibility — Setup bisa direkonstruksi
 
 Experimental Setup:
   Input data     :Data sensor IoT simulasi
@@ -111,9 +112,12 @@ Gunakan RQ dan variabel dari WS-05. Petakan ke komponen sistem.
 
 | Variabel | Tipe | Komponen Sistem | Cara Manipulasi / Pengukuran |
 |----------|------|-----------------|---------------------------|
-| *Contoh: Jenis model* | *IV* | *Modul classifier (swap RF ↔ CNN)* | *Ganti config `model_type`* |
-| | DV | | |
-| | CV | | |
+|Jenis protokol|IV|Modul keamanan MQTT|Ganti config TLS ↔ DTLS|
+|Latensi|DV|Logger response time|Hitung waktu pengiriman|
+|Penggunaan memori|DV|Resource monitor|Monitor RAM|
+|Ukuran payload|CV|Config payload|Dibuat tetap|
+|Jumlah request|CV|Traffic simulator|Dibuat sama|
+
 
 **Apakah semua variabel bisa di-map?** Ya
 ---
@@ -124,10 +128,10 @@ Evaluasi desain sistem terhadap 4 prinsip.
 
 | Prinsip | Status | Bukti / Penjelasan |
 |---------|--------|-------------------|
-| Traceability | *Contoh: ✅ — setiap modul punya label variabel* |Semua komponen terkait langsung dengan variabel|
-| Modularity | |TLS dan DTLS bisa diganti lewat config|
-| Controllability | |Payload dan request dikontrol tetap|
-| Measurability | |Sistem otomatis mencatat log eksperimen|
+| Traceability |✅|Semua komponen terkait langsung dengan variabel|
+| Modularity |✅|TLS dan DTLS bisa diganti lewat config|
+| Controllability |✅|Payload dan request dikontrol tetap|
+| Measurability |✅|Sistem otomatis mencatat log eksperimen|
 
 **Prinsip mana yang paling sulit dipenuhi?**Controllability
 **Strategi untuk mengatasinya:**
@@ -144,8 +148,8 @@ Jika sistem memiliki 3 komponen utama, rencanakan ablation study.
 
 | Kondisi | Komponen A | Komponen B | Komponen C | Hasil yang Diharapkan |
 |---------|-----------|-----------|-----------|----------------------|
-| Full | *Contoh: ✅ CNN* | *Contoh: ✅ Temporal features* | *Contoh: ✅ Z-score norm* | *Baseline penuh* |
-| – A | ❌ (ganti RF) | ✅ | ✅ |Keamanan turun, performa naik|
+| Full |✅|✅|✅|Baseline penuh|
+| – A | ❌ (tanpa TLS) | ✅ | ✅ |Keamanan turun, performa naik|
 | – B | ✅ | ❌ (tanpa temporal) | ✅ |Tidak ada data penggunaan RAM|
 | – C | ✅ | ✅ | ❌ (tanpa normalisasi) |Data kurang stabil|
 
