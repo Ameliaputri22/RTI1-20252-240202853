@@ -70,7 +70,7 @@ RQ-CONTRIBUTION-HYPOTHESIS
 Gap Statement  :Belum ada penelitian yang secara langsung membandingkan performa TLS 1.3 dan DTLS pada protokol MQTT di perangkat IoT dengan keterbatasan resource, khususnya dari segi latensi dan penggunaan memori.
 
 Research Question:
-  Tipe         :  Comparison
+  Tipe         :☑ Comparison
   Formulasi    : Apakah TLS 1.3 menghasilkan performa yang lebih baik dibandingkan DTLS dalam hal latensi dan penggunaan memori pada protokol MQTT di perangkat IoT dengan RAM <64KB?
   Variabel IV  : Jenis protokol keamanan (TLS 1.3 vs DTLS)
   Variabel DV  : Latensi dan penggunaan memori
@@ -79,15 +79,15 @@ Research Question:
   Baseline     : DTLS (dibandingkan dengan TLS 1.3)
 
 Quality Check RQ:
-  [ ] Variabel spesifik
-  [ ] Metrik jelas
-  [ ] Baseline ada
-  [ ] Konteks disebutkan
-  [ ] Memerlukan eksperimen (bukan hanya survei literatur)
+  [☑] Variabel spesifik
+  [☑] Metrik jelas
+  [☑] Baseline ada
+  [☑] Konteks disebutkan
+  [☑] Memerlukan eksperimen (bukan hanya survei literatur)
 
 Contribution Statement:
   Apa yang baru diketahui :Perbandingan empiris antara TLS 1.3 dan DTLS dalam konteks MQTT pada perangkat IoT dengan resource terbatas
-  Jenis kontribusi        :  Comparison
+  Jenis kontribusi        : ☑ Comparison
   Gap yang diisi          : Method gap dan performance gap terkait pemilihan protokol keamanan IoT
 
 Hypothesis Pair:
@@ -117,7 +117,7 @@ Gunakan gap yang ditemukan di WS-03. Transformasikan menjadi Research Question.
 | Baseline |Tidak |belum jelas|
 | Dataset/konteks |Tidak |belum disebut|
 
-**Tipe RQ:** Comparison
+**Tipe RQ:** ☑ Comparison
 
 **RQ versi revisi (setelah evaluasi):**
 > Apakah TLS 1.3 menghasilkan latensi dan penggunaan memori yang lebih rendah dibandingkan DTLS pada protokol MQTT di perangkat IoT dengan RAM <64KB?
@@ -136,8 +136,8 @@ Rumuskan pasangan hipotesis dari RQ di Latihan 1.
 | Threshold |p < 0.05|
 | Justifikasi threshold |Standar umum penelitian statistik|
 
-**Apakah hipotesis ini falsifiable?** Ya
-> Bagaimana cara membuktikannya salah?Dengan melakukan eksperimen dan menunjukkan bahwa hasil uji statistik tidak signifikan (p ≥ 0.05), sehingga H₀ tidak dapat ditolak.
+**Apakah hipotesis ini falsifiable?** ☑ Ya
+> Bagaimana cara membuktikannya salah? Dengan melakukan eksperimen dan menunjukkan bahwa hasil uji statistik tidak signifikan (p ≥ 0.05), sehingga H₀ tidak dapat ditolak.
 
 ---
 
@@ -154,7 +154,7 @@ Lengkapi rantai dari RQ hingga metode analisis.
 | Data source |Trafik IoT (simulasi / real dataset)|
 | Analysis method |Uji statistik (t-test atau Mann-Whitney)|
 
-**Apakah rantai lengkap?** Ya
+**Apakah rantai lengkap?** ☑ Ya
 
 
 ---
