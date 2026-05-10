@@ -68,36 +68,38 @@ Ancaman validitas harus diidentifikasi **sebelum** eksperimen dan mitigasinya di
 ```
 EXPERIMENT DESIGN
 
-Research Question : ____________________
-Hypothesis        : ____________________
-Tipe Eksperimen   : [ ] Comparison  [ ] Ablation  [ ] Parameter
-
+Research Question :Apakah TLS 1.3 menghasilkan latensi dan penggunaan memori yang lebih rendah dibandingkan DTLS pada protokol MQTT di perangkat IoT dengan RAM <64KB?
+Hypothesis        :
+H₀ : Tidak ada perbedaan signifikan antara TLS 1.3 dan DTLS terhadap latensi dan penggunaan memori
+H₁ : Ada perbedaan signifikan antara TLS 1.3 dan DTLS terhadap latensi dan penggunaan memori
+Tipe Eksperimen
+Tipe Eksperimen   : [☑] Comparison
 Kondisi Eksperimen:
 | Kondisi | Deskripsi | IV Value | CV Settings |
 |---------|-----------|----------|-------------|
-| Control |           |          |             |
-| Treatment |         |          |             |
+| Control |Baseline menggunakan DTLS|DTLS|Dataset sama, payload sama, seed 42|
+| Treatment |Pengujian menggunakan TLS 1.3|TLS 1.3|Dataset sama, payload sama, seed 42|
 
 Fairness Checklist:
-  [ ] Dataset identik untuk semua kondisi
-  [ ] Preprocessing setara
-  [ ] Tuning effort setara
-  [ ] Environment identik
-  [ ] Metrik evaluasi sama
+  [☑] Dataset identik untuk semua kondisi
+  [☑] Preprocessing setara
+  [☑] Tuning effort setara
+  [☑] Environment identik
+  [☑] Metrik evaluasi sama
 
 Threat Analysis:
 | Threat Type | Ancaman Spesifik | Mitigasi |
 |-------------|-----------------|----------|
-| Internal    |                 |          |
-| External    |                 |          |
-| Construct   |                 |          |
-| Conclusion  |                 |          |
+| Internal    |Perbedaan kondisi jaringan|Gunakan jaringan dan konfigurasi yang sama|
+| External    |Dataset hanya simulasi|Tambahkan skenario real IoT|
+| Construct   |Latensi tidak sepenuhnya merepresentasikan performa|Tambahkan throughput sebagai secondary metric|
+| Conclusion  |Jumlah sampel eksperimen terlalu kecil|Lakukan pengulangan eksperimen beberapa kali|
 
 Statistical Plan:
-  Uji statistik   : ____________________
-  Justifikasi      : ____________________
-  Alpha            : ____________________
-  Effect size min  : ____________________
+  Uji statistik   :Independent t-test
+  Justifikasi      :Membandingkan rata-rata dua kelompok independen
+  Alpha            :0.005
+  Effect size min  :0.2
 ```
 
 ---
@@ -106,13 +108,12 @@ Statistical Plan:
 
 Susun desain eksperimen berdasarkan RQ, variabel, dan sistem dari WS-04 sampai WS-06.
 
-**RQ:** __________________________________________________
-**Tipe eksperimen:** [ ] Comparison / [ ] Ablation / [ ] Parameter
-
+**RQ:** Apakah TLS 1.3 lebih efisien dibandingkan DTLS pada MQTT IoT?
+**Tipe eksperimen:** [☑] Comparison
 | Kondisi | Deskripsi | IV Value | CV Settings |
 |---------|-----------|----------|-------------|
-| Control | *Contoh: RF baseline dari literatur* | *RF* | *Dataset X, 80:20 split, seed 42* |
-| Treatment | | | |
+| Control |DTLS sebagai baseline|DTLS|Payload 512B, dataset sama, seed 42|
+| Treatment |TLS 1.3 sebagai metode pembanding|TLS 1.3|Payload 512B, dataset sama, seed 42|
 
 ---
 
@@ -122,16 +123,13 @@ Evaluasi apakah desain eksperimen di Latihan 1 sudah fair.
 
 | Kriteria | Status | Detail |
 |----------|--------|--------|
-| Dataset identik | *Contoh: ✅ — sama-sama pakai CIC-MalMem-2022* | |
-| Preprocessing setara | | |
-| Tuning effort setara | | |
-| Environment identik | | |
-| Metrik evaluasi sama | | |
+| Dataset identik |✅|Menggunakan dataset yang sama|
+| Preprocessing setara|✅|Data diproses dengan metode yang sama|
+| Tuning effort setara|✅|Konfigurasi diuji dengan effort seimbang|
+| Environment identik |✅|Hardware dan jaringan sama|
+| Metrik evaluasi sama |✅|Sama-sama memakai latensi & memori|
 
-**Ada yang tidak fair?** [ ] Ya / [ ] Tidak
-> Jika ya, bagaimana cara memperbaikinya? ________________
-
----
+**Ada yang tidak fair?**☑ Tidak
 
 ## Latihan 3 — Threat Analysis
 
@@ -139,14 +137,14 @@ Identifikasi ancaman validitas untuk desain eksperimen ini.
 
 | Threat Type | Ancaman Spesifik | Mitigasi |
 |-------------|-----------------|----------|
-| Internal | *Contoh: Data leakage antara train-test* | *Contoh: Gunakan stratified split, validasi tidak ada overlap* |
-| External | | |
-| Construct | | |
-| Conclusion | | |
+| Internal |Perbedaan traffic jaringan|Gunakan traffic generator yang sama|
+| External |Hanya diuji pada satu jenis perangkat IoT|Tambahkan beberapa perangkat berbeda|
+| Construct |Latensi belum cukup menggambarkan kualitas|Tambahkan throughput|
+| Conclusion |Variasi hasil antar percobaan|Lakukan eksperimen berulang|
 
-**Ancaman mana yang paling sulit dimitigasi?** _____________
+**Ancaman mana yang paling sulit dimitigasi?** External validity
 **Mengapa?**
-> ___________________________________________________
+> Karena hasil eksperimen pada satu jenis perangkat atau lingkungan belum tentu dapat digeneralisasikan ke semua kondisi IoT di dunia nyata.
 
 ---
 
@@ -155,6 +153,6 @@ Identifikasi ancaman validitas untuk desain eksperimen ini.
 > Sebuah paper melaporkan "metode kami mengalahkan semua baseline." Apa 3 pertanyaan pertama yang harus diajukan untuk mengevaluasi klaim ini?
 
 **Jawaban:**
-1. ___________________________________________________
-2. ___________________________________________________
-3. ___________________________________________________
+1. Apakah semua metode diuji menggunakan dataset dan kondisi yang sama?
+2. Apakah baseline yang digunakan merupakan metode yang relevan dan representatif?
+3. Apakah perbedaan hasil tersebut signifikan secara statistik dan bukan karena bias eksperimen?
