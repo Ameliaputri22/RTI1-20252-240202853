@@ -113,7 +113,7 @@ Gap 2: [Jenis:Data + Context Gap]
 
 Baseline Selection:
 | Baseline | Relevansi | Representatif | Source |
-|DTLS pada IoT|Alternatif TLS untuk perangkat ringan|Banyak digunakan pada IoT low-resource|Singh et al., 202|
+|DTLS pada IoT|Alternatif TLS untuk perangkat ringan|Banyak digunakan pada IoT low-resource|Singh et al., 2021|
 | TLS pada MQTT|Digunakan untuk keamanan komunikasi IoT|Umum digunakan di banyak penelitian|Kim et al., 2020|
 ```
 
@@ -136,7 +136,7 @@ Gunakan topik riset dari WS-02. Cari minimal 5 paper relevan menggunakan databas
 |---|-------|-------|--------|---------|--------|----------|
 | 1 | |Kim et al.|2020|TLS|IOT traffic|Latensi tinggi|
 | 2 | |Singh et al.|2021|DTLS |simulasi|lebih ringan|
-| 3 | | Zhang et al.|2022 |CNN |KDD|akurasi tinggi|
+| 3 | |Zhang et al.|2022 |CNN |KDD|akurasi tinggi|
 | 4 | |Lee et al.|2023 |Hybrid |Real IOT|Aman|
 | 5 | |Ahmad et al.|2024 |Lightweight|Simulasi|Efisien|
 
@@ -171,7 +171,7 @@ Pilih 2 baseline dari literatur yang sudah dibaca.
 | 1 |TLS pada MQTT |Digunakan dalam sistem keamanan IoT|Banyak dipakai| Tidak|Kim et al., 2020|
 | 2 |DTLS pada IoT | Alternatif untuk resource rendah|Umum digunakan|Tidak|Singh et al., 2021|
 
-**Apakah pemilihan baseline ini bisa dianggap straw man?** |tidak|
+**Apakah pemilihan baseline ini bisa dianggap straw man?** ☑ Tidak
 > Justifikasi: Kedua baseline merupakan metode yang benar-benar digunakan dalam praktik dan literatur, sehingga perbandingan adil.
 
 ---
