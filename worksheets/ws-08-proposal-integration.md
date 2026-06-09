@@ -109,13 +109,13 @@ Kumpulkan hasil dari WS-02 sampai WS-07 menjadi satu ringkasan proposal.
 
 | Komponen | Sumber | Isi (1-2 kalimat) |
 |----------|--------|-------------------|
-| Problem Statement | WS-02 | *Contoh: Sistem rekomendasi memiliki akurasi tinggi (RMSE 0.87) tetapi satisfaction score rendah (45/100). Gap antara metrik teknis dan kepuasan pengguna belum diteliti.* |
-| Gap | WS-03 | *Contoh: Tidak ada studi yang mengintegrasikan collaborative filtering dengan user-context signals untuk meningkatkan satisfaction.* |
-| RQ | WS-04 | *Contoh: Apakah penambahan context-aware signals pada collaborative filtering meningkatkan satisfaction score tanpa menurunkan RMSE?* |
-| Hipotesis | WS-04 | *Contoh: H₁: Sistem CF+context menghasilkan satisfaction ≥ 70/100 dengan RMSE ≤ 0.90 dibanding baseline CF murni.* |
-| Variabel & Metrik | WS-05 | *Contoh: IV = jenis sistem (CF vs CF+context); DV = satisfaction score (skala 0-100) + RMSE (regresi).* |
-| Sistem | WS-06 | |
-| Desain Eksperimen | WS-07 | |
+| Problem Statement | WS-02 |Penggunaan lampu yang sering dibiarkan menyala saat tidak diperlukan menyebabkan pemborosan energi listrik. Diperlukan sistem pencahayaan cerdas yang mampu mengontrol lampu secara otomatis dan jarak jauh untuk meningkatkan efisiensi penggunaan energi.|
+| Gap | WS-03 | Sebagian penelitian Smart Lamp hanya berfokus pada kontrol jarak jauh melalui smartphone. Masih terbatas penelitian yang mengintegrasikan sensor lingkungan dan monitoring konsumsi energi secara real-time untuk meningkatkan efisiensi penggunaan listrik.|
+| RQ | WS-04 | Apakah implementasi sistem pencahayaan cerdas berbasis IoT dapat mengurangi konsumsi energi listrik dibandingkan sistem pencahayaan konvensional?|
+| Hipotesis | WS-04 |H₁: Sistem pencahayaan cerdas berbasis IoT mampu menurunkan konsumsi energi listrik secara signifikan dibandingkan sistem pencahayaan konvensional. |
+| Variabel & Metrik | WS-05 |IV = Jenis sistem pencahayaan (konvensional dan Smart Lamp IoT). DV = Konsumsi energi listrik (kWh) dan waktu penggunaan lampu (jam). CV = Jenis lampu, daya lampu, kondisi ruangan, dan waktu pengujian. |
+| Sistem | WS-06 |Sistem terdiri dari NodeMCU ESP8266, relay, sensor cahaya (LDR), aplikasi IoT, dan lampu yang dapat dikontrol otomatis maupun melalui smartphone.|
+| Desain Eksperimen | WS-07 |Comparison study antara sistem pencahayaan konvensional dan Smart Lamp IoT dengan mengukur konsumsi energi listrik pada kondisi penggunaan yang sama.|
 
 ---
 
@@ -132,13 +132,11 @@ Verifikasi 6 koneksi kritis. Isi dengan merujuk tabel di Latihan 1.
 | Metric → System | | |
 | System → Experiment | | |
 
-**Koneksi mana yang paling lemah?** _______________________
+**Koneksi mana yang paling lemah?**Problem → Gap
 **Bagaimana cara memperkuatnya?**
-> ___________________________________________________
+> Menambahkan data statistik konsumsi listrik rumah tangga dan penelitian terdahulu yang menunjukkan keterbatasan sistem pencahayaan otomatis yang ada saat ini.
 
-**Konsistensi horizontal — apakah istilah dan scope konsisten?** [ ] Ya / [ ] Tidak
-> Jika tidak, di bagian mana terjadi inkonsistensi? _________
-
+**Konsistensi horizontal — apakah istilah dan scope konsisten?** [☑] Ya 
 ---
 
 ## Latihan 3 — Rubrik Self-Assessment
@@ -154,8 +152,8 @@ Evaluasi proposal mini menggunakan rubrik.
 
 **Skor total:** _____ / 12
 
-**Apakah proposal siap untuk fase eksekusi?** [ ] Ya / [ ] Belum
-> Jika belum, apa yang perlu diperbaiki? __________________
+**Apakah proposal siap untuk fase eksekusi?** [☑] Ya
+> Jika belum, apa yang perlu diperbaiki?Menambahkan referensi jurnal terbaru dan memperjelas target penghematan energi yang ingin dicapai.
 
 ---
 
@@ -163,8 +161,7 @@ Evaluasi proposal mini menggunakan rubrik.
 
 > Dari seluruh proses WS-01 sampai WS-08, bagian mana yang paling mudah dan paling sulit? Mengapa? Apa yang akan dilakukan berbeda jika mengulang dari awal?
 
-**Bagian termudah:** ____________________________________
-**Bagian tersulit:** ____________________________________
+**Bagian termudah:** Menentukan variabel dan merancang sistem karena komponen Smart Lamp IoT cukup sederhana dan mudah dipahami.
+**Bagian tersulit:**Menentukan research gap yang benar-benar didukung oleh literatur sehingga penelitian memiliki kontribusi ilmiah yang jelas.
 **Yang akan dilakukan berbeda:**
-> ___________________________________________________
-> ___________________________________________________
+> Saya akan melakukan studi literatur lebih awal untuk menemukan gap penelitian yang lebih spesifik serta menyusun hubungan antara masalah, research question, dan metode penelitian sejak awal agar proposal lebih terstruktur dan konsisten.
