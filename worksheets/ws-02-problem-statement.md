@@ -67,23 +67,24 @@ Masalah riset yang layak harus memenuhi 5 kriteria:
 PROBLEM STATEMENT BUILDER
 
 Domain & Konteks
-  Domain   : Keamanan IoT
-  Konteks  : Sistem komunikasi perangkat IoT menggunakan protokol MQTT pada perangkat dengan keterbatasan memori
+  Domain   :  Internet of Things (IoT)
+  Konteks  : Sistem pencahayaan rumah dan ruang kelas yang masih dioperasikan secara manual
+
  
 System Context
-Input : Data sensor yang dikirim dari perangkat IoT
-Process : Pengiriman data melalui protokol MQTT dengan enkripsi (TLS/DTLS)
-Output : Data yang diterima oleh server/broker MQTT
-Outcome : Keamanan data meningkat tanpa mengorbankan performa sistem
-Constraints : Keterbatasan RAM (<64KB), bandwidth terbatas, dan daya perangkat rendah
-Stakeholders : Developer IoT, pengguna sistem, perusahaan teknologi, dan peneliti keamanan
+Input       : Data intensitas cahaya dan keberadaan pengguna dari sensor
+Process     : NodeMCU memproses data sensor dan mengontrol lampu secara otomatis
+Output      : Status lampu (ON/OFF) sesuai kondisi lingkungan
+Outcome     : Penghematan energi listrik dan peningkatan efisiensi penggunaan lampu
+Constraints : Keterbatasan jaringan internet, daya perangkat, dan biaya implementasi
+Stakeholders: Pengguna rumah, sekolah, pengelola gedung, dan peneliti IoT
  
 Fenomena → Problem
-Fenomena yang diamati :Penggunaan IoT semakin meningkat namun keamanan komunikasi masih menjadi tantangan
-Gejala (symptom) yang terukur :Latensi meningkat dan penggunaan memori tinggi saat menggunakan enkripsi
-Masalah yang didiagnosis : Protokol keamanan seperti TLS menambah overhead yang signifikan pada perangkat IoT dengan resource terbatas
-Masalah riset (researchable) : Belum ada perbandingan yang jelas mengenai efisiensi overhead antara TLS 1.3 dan DTLS pada MQTT untuk perangkat IoT dengan RAM terbatas.
-Variabel yang terukur : Latensi (ms), penggunaan memori (KB), throughput, dan tingkat keamanan
+Fenomena yang diamati :Banyak lampu masih menyala meskipun ruangan kosong atau kondisi ruangan sudah cukup terang.
+Gejala (symptom) yang terukur : Tingginya konsumsi energi listrik akibat penggunaan lampu yang tidak efisien.
+Masalah yang didiagnosis :Pengoperasian lampu secara manual menyebabkan pengguna sering lupa mematikan lampu sehingga terjadi pemborosan energi.
+Masalah riset (researchable) :Bagaimana merancang sistem pencahayaan cerdas berbasis IoT yang mampu mengontrol lampu secara otomatis untuk mengoptimalkan penggunaan energi listrik?
+Variabel yang terukur :Konsumsi energi listrik (Wh), waktu aktif lampu (menit/jam), intensitas cahaya (lux), dan efisiensi energi (%).
 Problem Quality Check
   [☑] Clarity — Apakah satu orang membaca akan paham?
   [☑] Measurability — Apakah ada metrik kuantitatif?
@@ -92,7 +93,7 @@ Problem Quality Check
   [☑] Impact — Apakah ada kontribusi jika terjawab?
 
 Problem Statement (1 paragraf):
-  Dalam sistem IoT yang menggunakan protokol MQTT, penerapan mekanisme keamanan seperti TLS seringkali menimbulkan overhead yang signifikan pada perangkat dengan keterbatasan sumber daya, terutama pada memori dan latensi komunikasi. Hal ini menjadi masalah karena perangkat IoT umumnya memiliki RAM yang sangat terbatas (<64KB), sehingga penggunaan protokol keamanan dapat mempengaruhi performa sistem secara keseluruhan. Meskipun keamanan merupakan aspek penting, belum terdapat studi yang secara komprehensif membandingkan efisiensi antara TLS 1.3 dan DTLS dalam konteks MQTT pada perangkat IoT dengan resource terbatas. Oleh karena itu, penelitian ini bertujuan untuk mengukur dan membandingkan overhead kedua protokol tersebut berdasarkan metrik seperti latensi, penggunaan memori, dan throughput guna menentukan solusi yang paling optimal.
+Penggunaan lampu yang masih dikendalikan secara manual sering menyebabkan pemborosan energi listrik karena lampu tetap menyala meskipun ruangan tidak digunakan atau kondisi pencahayaan sudah memadai. Permasalahan ini berdampak pada meningkatnya konsumsi listrik dan biaya operasional, terutama pada rumah, sekolah, maupun perkantoran. Seiring berkembangnya teknologi Internet of Things (IoT), sistem pencahayaan dapat diotomatisasi dengan memanfaatkan sensor dan mikrokontroler untuk mengontrol lampu berdasarkan kondisi lingkungan secara real-time. Namun, masih diperlukan penelitian mengenai efektivitas penerapan sistem pencahayaan cerdas dalam mengoptimalkan konsumsi energi listrik. Oleh karena itu, penelitian ini bertujuan merancang dan membangun sistem pencahayaan cerdas berbasis IoT yang mampu mengontrol lampu secara otomatis serta mengukur tingkat efisiensi energi yang dihasilkan.
 ```
 
 ---
@@ -146,8 +147,7 @@ Evaluasi problem statement yang sudah dibuat menggunakan 5 kriteria.
 **Skor total:** 25 / 25
 
 **Problem statement versi final (1 paragraf):**
-> Dalam implementasi sistem IoT berbasis MQTT, penggunaan protokol keamanan seperti TLS dan DTLS berpotensi menimbulkan overhead yang signifikan terhadap performa perangkat dengan keterbatasan sumber daya. Permasalahan ini menjadi krusial karena sebagian besar perangkat IoT memiliki kapasitas memori dan daya yang rendah. Hingga saat ini, belum terdapat analisis komprehensif yang membandingkan efisiensi kedua protokol tersebut dalam kondisi resource terbatas. Oleh karena itu, penelitian ini berfokus pada pengukuran dan perbandingan performa TLS 1.3 dan DTLS berdasarkan metrik latensi, penggunaan memori, dan throughput untuk menentukan solusi keamanan yang paling optimal.
-
+> Penggunaan lampu secara manual masih menjadi penyebab utama pemborosan energi listrik karena pengguna sering lupa mematikan lampu saat ruangan tidak digunakan. Kondisi tersebut menyebabkan konsumsi energi meningkat dan biaya listrik menjadi lebih besar. Pemanfaatan teknologi Internet of Things (IoT) memungkinkan pengembangan sistem pencahayaan cerdas yang mampu mengontrol lampu secara otomatis berdasarkan kondisi lingkungan dan keberadaan pengguna. Namun, efektivitas sistem tersebut dalam mengoptimalkan konsumsi energi listrik masih perlu dievaluasi. Oleh karena itu, penelitian ini berfokus pada perancangan dan pembangunan sistem pencahayaan cerdas berbasis IoT serta pengukuran tingkat efisiensi energi yang dihasilkan dibandingkan dengan sistem pencahayaan konvensional.
 ---
 
 ## Refleksi
@@ -155,5 +155,5 @@ Evaluasi problem statement yang sudah dibuat menggunakan 5 kriteria.
 > Bandingkan "masalah" yang biasa ditemui saat coding (bug, error) dengan masalah riset. Apa perbedaan fundamental dalam cara mendefinisikan dan mendekati keduanya?
 
 **Jawaban:**
->Masalah dalam coding biasanya berupa bug atau error yang langsung terlihat dan harus segera diperbaiki agar sistem dapat berjalan dengan baik. Sedangkan masalah riset lebih berfokus pada menemukan dan membuktikan gap dalam pengetahuan yang belum terjawab. Dalam riset, masalah harus dirumuskan secara sistematis, dapat diukur, dan dapat diuji, tidak hanya sekadar menyelesaikan masalah praktis tetapi juga menghasilkan pemahaman baru yang dapat digunakan oleh orang lain.
+>Masalah dalam coding biasanya berupa bug, error, atau kegagalan fungsi program yang dapat langsung diidentifikasi dan diperbaiki. Fokusnya adalah membuat sistem berjalan sesuai kebutuhan pengguna. Sementara itu, masalah riset berfokus pada pencarian pengetahuan baru atau solusi yang belum terbukti secara ilmiah. Dalam penelitian, masalah harus dirumuskan secara sistematis, memiliki variabel yang dapat diukur, serta dapat diuji melalui eksperimen sehingga menghasilkan bukti ilmiah yang dapat dipertanggungjawabkan.
 
