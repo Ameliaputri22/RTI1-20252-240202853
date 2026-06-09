@@ -102,15 +102,15 @@ Penggunaan lampu yang masih dikendalikan secara manual sering menyebabkan pembor
 
 Pilih satu topik di bidang TI yang diminati. Transformasikan melalui 5 tahap Problem Formation Model.
 
-**Topik awal:** Keamanan IoT
+**Topik awal:** Smart Lamp Berbasis IoT
 
 | Tahap | Hasil |
 |-------|-------|
-| Reality |Banyak perangkat IoT menggunakan komunikasi yang tidak aman |
-| Observed Issue (Symptom) | Terjadi peningkatan latensi saat menggunakan enkripsi|
-| Diagnosed Problem (Root Cause) | Overhead enkripsi tidak sesuai dengan keterbatasan perangkat |
-| Researchable Problem |Belum ada perbandingan efisiensi TLS vs DTLS pada MQTT di perangkat low-resource |
-| Measurable Variable |Latensi, penggunaan RAM, throughput |
+| Reality |Banyak lampu digunakan secara manual sehingga sering lupa dimatikan|
+| Observed Issue (Symptom) |Konsumsi listrik lebih tinggi dari yang seharusnya|
+| Diagnosed Problem (Root Cause) |Tidak ada sistem otomatis yang mengontrol lampu berdasarkan kondisi ruangan|
+| Researchable Problem |Bagaimana penerapan Smart Lamp berbasis IoT dapat mengoptimalkan konsumsi energi listrik?|
+| Measurable Variable |Konsumsi energi (Wh), waktu aktif lampu, efisiensi energi (%) |
 
 **Apakah terjebak solution-first thinking?** ☑ Tidak
 ---
@@ -121,15 +121,14 @@ Gambarkan konteks sistem dari masalah riset di Latihan 1.
 
 | Komponen | Deskripsi |
 |----------|----------|
-| Input |Data sensor dari perangkat IoT |
-| Process | Pengiriman data melalui MQTT dengan enkripsi|
-| Output |Data diterima server|
-| Outcome | Keamanan dan efisiensi sistem|
-| Constraints |RAM kecil, bandwidth terbatas |
-| Stakeholders |Developer, pengguna, peneliti |
+| Input |Data sensor cahaya (LDR) dan sensor gerak (PIR) |
+| Process |NodeMCU memproses data dan mengendalikan relay|
+| Output |Lampu menyala atau mati secara otomatis|
+| Outcome |Penghematan energi listrik|
+| Constraints |Koneksi internet dan keterbatasan perangkat|
+| Stakeholders |Pengguna rumah, sekolah, dan gedung|
 
-**Komponen mana yang paling relevan dengan masalah riset?** Process (karena terkait langsung dengan penggunaan TLS/DTLS)
-
+**Komponen mana yang paling relevan dengan masalah riset?** Process karena proses pengambilan keputusan otomatis menentukan efisiensi penggunaan energi listrik.
 ---
 
 ## Latihan 3 — Problem Quality Check
@@ -138,11 +137,11 @@ Evaluasi problem statement yang sudah dibuat menggunakan 5 kriteria.
 
 | Kriteria | Skor (1-5) | Justifikasi |
 |----------|-----------|-------------|
-| Clarity | 5 |Masalah dijelaskan dengan jelas dan spesifik | 
-| Measurability |5|Menggunakan metrik kuantitatif |
-| Relevance | 5 |Penting untuk keamanan IoT |
-| Testability | 5 |Bisa diuji melalui eksperimen |
-| Impact | 5 |Memberikan solusi optimal untuk IoT |
+| Clarity | 5 |Masalah dijelaskan secara jelas dan mudah dipahami| 
+| Measurability |5|Menggunakan metrik konsumsi energi dan efisiensi|
+| Relevance | 5 | |Penting untuk penghematan energi listrik|
+| Testability | 5 |Dapat diuji melalui implementasi prototipe |
+| Impact | 5 |Berpotensi mengurangi pemborosan energi |
 
 **Skor total:** 25 / 25
 
