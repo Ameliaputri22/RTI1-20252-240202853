@@ -125,12 +125,12 @@ Verifikasi 6 koneksi kritis. Isi dengan merujuk tabel di Latihan 1.
 
 | Koneksi | Status | Bukti |
 |---------|--------|-------|
-| Problem → Gap | *Contoh: ✅ — gap muncul dari 15 paper Bab 3 yang tidak ada yang mengkombinasikan CF + context untuk satisfaction* | |
-| Gap → RQ | *Contoh: ✅ — RQ langsung menanyakan apakah CF+context meningkatkan satisfaction* | |
-| RQ → Hypothesis | *Contoh: ✅ — H₁ memprediksi satisfaction ≥ 70 dengan threshold RMSE ≤ 0.90* | |
-| Hypothesis → Metric | | |
-| Metric → System | | |
-| System → Experiment | | |
+| Problem → Gap |✅|Masalah pemborosan listrik ditemukan, kemudian literatur menunjukkan masih terbatasnya integrasi monitoring energi secara real-time.|
+| Gap → RQ |✅|RQ secara langsung menguji apakah Smart Lamp IoT dapat meningkatkan efisiensi energi.|
+| RQ → Hypothesis |✅|Hipotesis memprediksi penurunan konsumsi energi listrik.|
+| Hypothesis → Metric |✅|Hipotesis diukur menggunakan konsumsi energi listrik (kWh).|
+| Metric → System |✅|Sistem IoT dapat mencatat penggunaan lampu dan konsumsi energi.|
+| System → Experiment |✅|Sistem digunakan sebagai alat utama dalam pengujian dan pengumpulan data.|
 
 **Koneksi mana yang paling lemah?**Problem → Gap
 **Bagaimana cara memperkuatnya?**
@@ -145,12 +145,12 @@ Evaluasi proposal mini menggunakan rubrik.
 
 | Kriteria | Skor (1-3) | Justifikasi |
 |----------|-----------|-------------|
-| Koherensi | *Contoh: 2 — koneksi gap→RQ masih lemah karena gap belum cukup narrow* | |
-| Specificity | *Contoh: 3 — metrik (satisfaction 0-100, RMSE) sudah terdefinisi numerik* | |
-| Feasibility | | |
-| Rigor | | |
+| Koherensi |3|Alur dari masalah hingga eksperimen saling terhubung.|
+| Specificity |3|Variabel dan metrik sudah jelas dan dapat diukur.|
+| Feasibility |3|Sistem dapat dibuat menggunakan NodeMCU, relay, dan sensor LDR dalam waktu relatif singkat.|
+| Rigor |2|Perlu memperkuat kajian pustaka dan baseline penelitian.|
 
-**Skor total:** _____ / 12
+**Skor total:** 11 / 12
 
 **Apakah proposal siap untuk fase eksekusi?** [☑] Ya
 > Jika belum, apa yang perlu diperbaiki?Menambahkan referensi jurnal terbaru dan memperjelas target penghematan energi yang ingin dicapai.
