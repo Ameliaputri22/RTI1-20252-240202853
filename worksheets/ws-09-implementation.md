@@ -73,59 +73,64 @@ Mengandalkan "install library terbaru" berbahaya: versi berbeda = perilaku berbe
 EXPERIMENT SETUP DOCUMENTATION
 
 Hardware:
-  CPU     : ____________________
-  RAM     : ____________________
-  GPU     : ____________________
-  Storage : ____________________
+  CPU     : Intel Core i5-1135G7
+  RAM     : 8 GB DDR4
+  GPU     : Intel Iris Xe Graphics
+  Storage : SSD 512 GB
 
 Software:
-  OS        : ____________________
-  Runtime   : ____________________
-  Framework : ____________________
+  OS        : Windows 11 Pro 64-bit
+  Runtime   : Arduino IDE 2.3.2
+  Framework : Blynk IoT Platform dan ESP8266 Board Package
 
 Dependencies:
-| Library | Version | Sumber | Hash/Checksum |
-|---------|---------|--------|---------------|
-|         |         |        |               |
-|         |         |        |               |
+
+| Library           | Version | Sumber                  | Hash/Checksum |
+|-------------------|---------|-------------------------|---------------|
+| ESP8266WiFi       | 1.0     | Arduino Library Manager | N/A |
+| Blynk             | 1.3.2   | Arduino Library Manager | N/A |
+| ArduinoJson       | 7.0.4   | Arduino Library Manager | N/A |
+| ESP8266HTTPClient | 1.2     | Arduino Library Manager | N/A |
+| Wire              | 1.0     | Arduino IDE Default     | N/A |
 
 Konfigurasi:
-  Config file     : ____________________
-  Random seed     : ____________________
-  Hyperparameters : ____________________
+  Config file     : config.h
+  Random seed     : 42
+  Hyperparameters :
+                   - Ambang batas LDR = 500 lux
+                   - Interval monitoring = 5 detik
+                   - WiFi update rate = 1 detik
+                   - Status relay = ON/OFF otomatis
+                   - Jadwal operasi lampu = 18.00–06.00
 
 Reproducibility Check:
-  [ ] Dependency terdokumentasi (requirements.txt / lock file)
-  [ ] Seed ditetapkan di semua level (Python, NumPy, framework)
-  [ ] Config di version control
-  [ ] README instruksi reproduksi lengkap
-```
-
----
-
+  [✓] Dependency terdokumentasi (requirements.txt / lock file)
+  [✓] Seed ditetapkan di semua level (Arduino program)
+  [✓] Config di version control (GitHub)
+  [✓] README instruksi reproduksi lengkap
 ## Latihan 1 — Environment Specification
 
 Dokumentasikan environment untuk eksperimen Anda (boleh environment saat ini atau yang direncanakan).
 
 | Komponen | Spesifikasi |
 |----------|------------|
-| CPU | *Contoh: Intel Core i7-12700H, 14 Core* |
-| RAM | *Contoh: 32 GB DDR5* |
-| GPU | *Contoh: NVIDIA RTX 3060 6GB / CPU-only jika tidak ada GPU* |
-| OS | *Contoh: Ubuntu 22.04 LTS / Windows 11* |
-| Runtime | |
-| Framework | |
-| Random Seed | |
+| CPU |Intel Core i5-1135G7 |
+| RAM |8 GB DDR4|
+| GPU |Intel Iris Xe Graphics |
+| OS |Windows 11 Pro 64-bit |
+| Runtime |Arduino IDE 2.3.2|
+| Framework |ESP8266 Board Package, Blynk IoT|
+| Random Seed |42|
 
 **Dependencies (minimal 5):**
 
 | Library | Version | Alasan Dibutuhkan |
 |---------|---------|-------------------|
-| *Contoh: scikit-learn* | *1.3.2* | *Klasifikasi + evaluasi metrik* |
-| | | |
-| | | |
-| | | |
-| | | |
+|ESP8266WiFi|1.0|Menghubungkan NodeMCU ke jaringan WiFi|
+|Blynk |1.3.2|Komunikasi antara perangkat IoT dan aplikasi smartphone |
+|ArduinoJson |7.0.4|Pengolahan data JSON |
+|ESP8266HTTPClient|1.2|Komunikasi HTTP dengan server|
+|Wire |1.0|Komunikasi sensor dan modul tambahan |
 
 ---
 
@@ -135,25 +140,24 @@ Rancang tes repeatability sederhana: jalankan kode yang sama 3× di environment 
 
 | Run | Seed | Metrik Utama | Hasil Sama? |
 |-----|------|-------------|-------------|
-| 1 | *Contoh: 42* | *Contoh: Accuracy* | — |
-| 2 | | | [ ] Ya / [ ] Tidak |
-| 3 | | | [ ] Ya / [ ] Tidak |
+| 1 | 42 |Konsumsi Energi (kWh)| — |
+| 2 |42|Konsumsi Energi (kWh)| [☑] Ya |
+| 3 |42 |Konsumsi Energi (kWh) | [☑] Ya|
 
 **Jika hasil berbeda, kemungkinan penyebab:**
-
-> Penyebab umum non-repeatability:
-> - **Thermal throttling** — CPU/GPU overheating pada run berturut-turut → clock speed turun → waktu eksekusi berubah
-> - **Background process** — antivirus scan, update OS, atau cloud sync aktif saat run berlangsung
-> - **Cache dari run sebelumnya** — hasil tersimpan di memori/disk sehingga run berikutnya tidak menjalankan komputasi penuh
-> - **Random state tidak dikontrol di semua level** — Python seed di-set, tapi NumPy/PyTorch/TensorFlow punya seed independen
+Koneksi WiFi tidak stabil.
+Intensitas cahaya lingkungan berubah selama pengujian.
+Sensor LDR mengalami noise pembacaan.
+Waktu pengujian tidak konsisten.
+Adanya perangkat listrik lain yang memengaruhi konsumsi energi.
 
 ___________________________________________________
 
 **Checklist kontrol yang sudah diterapkan:**
-- [ ] Random seed di-set di semua level
-- [ ] Tidak ada background process yang mengganggu
-- [ ] Cache dibersihkan antar-run
-- [ ] Config file yang sama untuk semua run
+- [☑] Random seed di-set di semua level
+- [☑] Tidak ada background process yang mengganggu
+- [☑] Cache dibersihkan antar-run
+- [☑] Config file yang sama untuk semua run
 
 ---
 
@@ -162,26 +166,57 @@ ___________________________________________________
 Tulis README minimum untuk eksperimen Anda (6 komponen wajib).
 
 ```
-# Judul Eksperimen: ____________________
+# Judul Eksperimen
+Rancang Bangun Sistem Pencahayaan Cerdas Berbasis IoT untuk Optimalisasi Konsumsi Energi Listrik
 
 ## 1. Environment
-> (Salin spesifikasi dari Latihan 1)
+Hardware:
+- Intel Core i5
+- RAM 8 GB
+- NodeMCU ESP8266
+- Sensor LDR
+- Modul Relay 1 Channel
+- Lampu LED 10 Watt
+
+Software:
+- Windows 11
+- Arduino IDE 2.3.2
+- Blynk IoT
 
 ## 2. Installation
-> (Langkah instalasi, misal: "pip install -r requirements.txt")
+1. Install Arduino IDE.
+2. Tambahkan Board ESP8266.
+3. Install library ESP8266WiFi dan Blynk.
+4. Upload program ke NodeMCU.
+5. Hubungkan perangkat ke WiFi dan aplikasi Blynk.
 
 ## 3. Data
-> (Deskripsi data: sumber, format, ukuran)
+Data berupa:
+- Status lampu (ON/OFF)
+- Intensitas cahaya dari sensor LDR
+- Lama penggunaan lampu (jam)
+- Konsumsi energi listrik (kWh)
 
 ## 4. Execution
-> (Command untuk menjalankan eksperimen)
+1. Nyalakan sistem Smart Lamp.
+2. Hubungkan ke aplikasi Blynk.
+3. Jalankan pengujian selama periode tertentu.
+4. Simpan hasil monitoring ke file log.
 
 ## 5. Configuration
-> (File config yang digunakan + parameter kunci)
+File konfigurasi:
+- SSID WiFi
+- Password WiFi
+- Token Blynk
+- Ambang batas sensor LDR
+- Jadwal otomatis lampu
 
 ## 6. Expected Output
-> (Contoh output yang diharapkan + format)
-```
+Output yang dihasilkan:
+- Monitoring status lampu secara real-time.
+- Grafik penggunaan energi listrik.
+- Data konsumsi energi dalam satuan kWh.
+- Perbandingan konsumsi energi antara sistem konvensional dan Smart Lamp IoT.
 
 ---
 
@@ -189,6 +224,10 @@ Tulis README minimum untuk eksperimen Anda (6 komponen wajib).
 
 > Apakah eksperimen Anda saat ini bisa direproduksi oleh orang lain tanpa bantuan Anda? Komponen apa yang masih hilang?
 
-**Level saat ini:** [ ] Repeatability / [ ] Reproducibility / [ ] Belum keduanya
+**Level saat ini:** [☑] Repeatability
 **Komponen yang belum terdokumentasi:**
-> ___________________________________________________
+> Diagram rangkaian lengkap Smart Lamp.
+Dokumentasi konfigurasi Blynk.
+File source code yang digunakan.
+Data hasil pengujian mentah.
+Prosedur kalibrasi sensor LDR.
