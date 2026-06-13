@@ -96,7 +96,8 @@ Susun execution plan untuk eksperimen Anda. Tentukan skenario, jumlah run, dan s
 
 | Run # | Skenario | Seed | Parameter Kunci | Status |
 |-------|----------|------|----------------|--------|
-| *1* | *Contoh: BERT-base, DS-1* | *42* | *lr=2e-5, epoch=10* | *Planned* |
+| *1* || *42* | *lr=2e-5, epoch=10* | *Planned* |
+| *1* | | *42* | *lr=2e-5, epoch=10* | *Planned* |
 | *2* | *BERT-base, DS-1* | *123* | *lr=2e-5, epoch=10* | *Planned* |
 | 3 | | | | |
 | 4 | | | | |
