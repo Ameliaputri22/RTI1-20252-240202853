@@ -65,8 +65,10 @@ Keduanya **saling melengkapi**:
 ```
 RESULT PRESENTATION PLAN
 
-Research Question : ____________________
-Metrik Utama      : ____________________
+Research Question : Apakah TLS 1.3 menghasilkan latensi komunikasi dan penggunaan memori yang lebih rendah dibandingkan DTLS pada protokol MQTT di perangkat IoT dengan RAM kurang dari 64 KB?
+Metrik Utama      :
+-Latency (ms)
+-Memory Usage (KB)
 
 Tabel Hasil:
 | Skenario | Metrik 1 (mean ± std) | Metrik 2 (mean ± std) | n |
@@ -76,14 +78,15 @@ Tabel Hasil:
 Visualisasi yang Direncanakan:
 | # | Jenis Grafik | Pesan Utama | Metrik |
 |---|-------------|-------------|--------|
-| 1 |             |             |        |
-| 2 |             |             |        |
+|1	|Bar chart + error bar|Membandingkan rata-rata latensi TLS 1.3 dan DTLS|Mean latency ± std|
+|2	|Box plot|Menunjukkan distribusi penggunaan memori pada setiap skenario|Seluruh data memory usage|
+|3	|Scatter plot|Melihat hubungan antara latensi dan penggunaan memori|Latency vs Memory Usage|
 
 Bias Check:
-  [ ] Y-axis mulai dari 0 (atau dijustifikasi)
-  [ ] Error bar/CI ditampilkan
-  [ ] Semua data disertakan (tidak cherry-picked)
-  [ ] Tidak menggunakan 3D tanpa alasan
+  [☑] Y-axis mulai dari 0 (atau dijustifikasi)
+  [☑] Error bar/CI ditampilkan
+  [☑] Semua data disertakan (tidak cherry-picked)
+  [☑] Tidak menggunakan 3D tanpa alasan
 ```
 
 ---
@@ -94,15 +97,14 @@ Buat tabel hasil eksperimen Anda (boleh dengan data simulasi jika belum punya da
 
 | Skenario | Metrik 1 (mean ± std) | Metrik 2 (mean ± std) | n |
 |----------|----------------------|----------------------|---|
-| *Contoh: BERT-base* | *88.4 ± 1.2%* | *45.2 ± 3.1 min* | *10* |
-| | | | |
-| | | | |
+|TLS 1.3	 |17.8 ± 0.9	          |28.4 ± 1.1            |	5|
+|DTLS	     |19.3 ± 1.2	          |31.2 ± 1.4            |	5|
 
 **Checklist tabel:**
-- [ ] Self-contained (judul jelas, satuan ada, N tercantum)
-- [ ] Mean ± std (bukan single number)
-- [ ] Diurutkan berdasarkan metrik utama
-- [ ] Format konsisten di semua baris
+- [☑] Self-contained (judul jelas, satuan ada, N tercantum)
+- [☑] Mean ± std (bukan single number)
+- [☑] Diurutkan berdasarkan metrik utama
+- [☑] Format konsisten di semua baris
 
 ---
 
@@ -112,9 +114,9 @@ Rencanakan 2-3 grafik untuk menyajikan data dari Latihan 1. Setiap grafik = satu
 
 | # | Jenis Grafik | Pesan | Data yang Digunakan |
 |---|-------------|-------|---------------------|
-| 1 | *Contoh: Bar chart + error bar* | *Perbandingan accuracy antar 3 model* | *Mean accuracy ± std* |
-| 2 | *Box plot* | *Distribusi F1 per model* | *Semua run F1* |
-| 3 | *Scatter plot* | *Trade-off accuracy vs training time* | *Mean accuracy vs mean time* |
+| 1 | *Contoh: Bar chart + error bar* |Membandingkan rata-rata latensi TLS 1.3 dan DTLS|Mean latency ± std|
+| 2 | *Box plot* |Menampilkan sebaran penggunaan memori pada masing-masing skenario| Seluruh data memory usage|
+| 3 | *Scatter plot* |Menunjukkan hubungan antara latensi dan penggunaan memori | Data tiap run (latency vs memory usage)|
 
 ---
 
@@ -126,13 +128,13 @@ Evaluasi visualisasi berikut untuk bias (skenario dari contoh):
 
 | Pertanyaan | Jawaban |
 |-----------|---------|
-| Apakah Y-axis menyesatkan? | *Contoh: Ya — A terlihat 2× B padahal beda 0.4%* |
-| Apakah error bar ditampilkan? | |
-| Apakah semua kondisi ditampilkan? | |
-| Apa solusinya? | |
+| Apakah Y-axis menyesatkan? |Ya. Perbedaan terlihat jauh lebih besar daripada kondisi sebenarnya karena sumbu Y tidak dimulai dari nol.|
+| Apakah error bar ditampilkan? |Belum. Error bar perlu ditambahkan agar variasi data terlihat.|
+| Apakah semua kondisi ditampilkan? |Ya. Kedua skenario (TLS 1.3 dan DTLS) ditampilkan.|
+| Apa solusinya? |Gunakan sumbu Y yang dimulai dari nol atau berikan justifikasi jika menggunakan rentang terbatas, serta tampilkan error bar pada setiap batang.|
 
 **Evaluasi grafik Anda sendiri dari Latihan 2:**
-- [ ] Semua bias check lulus
+- [☑] Semua bias check lulus
 - [ ] Ada yang perlu diperbaiki: ____
 
 ---
@@ -141,5 +143,5 @@ Evaluasi visualisasi berikut untuk bias (skenario dari contoh):
 
 > Mengapa tabel dan grafik keduanya diperlukan — tidak cukup salah satu saja? Pernahkah Anda membuat grafik yang (tanpa sengaja) menyesatkan?
 
-> ___________________________________________________
-> ___________________________________________________
+> Tabel dan grafik memiliki fungsi yang saling melengkapi. Tabel menyajikan nilai secara presisi sehingga memudahkan pembaca mengetahui angka rata-rata, standar deviasi, dan jumlah sampel. Sementara itu, grafik memudahkan pembaca melihat pola, tren, perbandingan, dan distribusi data dengan cepat. Oleh karena itu, keduanya diperlukan agar hasil penelitian dapat dipahami secara lengkap.
+> Dalam beberapa tugas sebelumnya, grafik batang dibuat tanpa menampilkan error bar dan menggunakan rentang sumbu Y yang terlalu sempit sehingga perbedaan antar-metode terlihat lebih besar daripada kondisi sebenarnya. Dari materi ini dipahami bahwa visualisasi harus dibuat secara objektif, menggunakan skala yang konsisten, menampilkan seluruh data, dan menyertakan ukuran variasi seperti standar deviasi agar tidak menimbulkan interpretasi yang keliru.
