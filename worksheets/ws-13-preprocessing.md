@@ -66,33 +66,35 @@ Data leakage terjadi ketika informasi dari test set "bocor" ke preprocessing:
 ```
 PREPROCESSING LOG
 
-Dataset           : ____________________
-Jumlah data awal  : ____________________
+Dataset           : Hasil eksperimen perbandingan TLS 1.3 dan DTLS pada MQTT IoT
+Jumlah data awal  : 10 records (5 run DTLS dan 5 run TLS 1.3)
 
 Cleaning:
 | Masalah | Jumlah Kasus | Penanganan | Justifikasi |
 |---------|-------------|------------|-------------|
-| Missing |             |            |             |
-| Duplikat|             |            |             |
-| Error   |             |            |             |
+| Missing | 0|Tidak ada tindakan|Seluruh data berhasil tercatat|
+| Duplikat| 0|Tidak ada tindakan|Setiap run memiliki Run ID yang unik|
+| Error   |0|Standardisasi format CSV|Semua kolom menggunakan tipe data yang konsisten|
 
 Transformation:
 | Transformasi | Variabel | Detail | Alasan |
 |-------------|----------|--------|--------|
-|             |          |        |        |
+|Konversi tipe data	Latency, Memory Usage	Dari string menjadi float	Memudahkan analisis statistik
+Standardisasi satuan	Memory Usage	Seluruh nilai menggunakan KB	Menjaga konsistensi data
+Penamaan variabel	Semua kolom	Menggunakan nama kolom yang seragam	Mempermudah proses analisis
 
 Normalization:
-  Metode    : ____________________
-  Alasan    : ____________________
-  Parameter : (dihitung dari: training set / seluruh data)
+  Metode    :Tidak dilakukan
+  Alasan    :Data hanya akan dianalisis menggunakan statistik deskriptif dan Independent t-test, sehingga tidak memerlukan normalisasi. Selain itu, seluruh metrik sudah berada pada satuan yang jelas (ms dan KB), sehingga transformasi tambahan dapat mengurangi interpretabilitas hasil.
+  Parameter :Tidak ada
 
 Leakage Check:
-  [ ] Parameter normalisasi dari training set saja
-  [ ] Tidak ada informasi test set dalam preprocessing
-  [ ] Cross-validation dilakukan setelah split
+  [☑] Parameter normalisasi dari training set saja
+  [☑] Tidak ada informasi test set dalam preprocessing
+  [☑] Cross-validation dilakukan setelah split
 
-Jumlah data akhir : ____________________
-Script tersedia   : [ ] Ya → path: ____ | [ ] Belum
+Jumlah data akhir : 
+Script tersedia   : [ ] Ya → path: ____ |
 ```
 
 ---
@@ -123,13 +125,14 @@ Tentukan apakah data Anda perlu normalisasi, dan jika ya, metode apa yang tepat.
 | *Contoh: response_time* | *0.1 – 45.2s* | *Right-skewed* | *Ya (45.2s)* | *Robust scaling* | *Ada outlier, perlu robust* || *Contoh: accuracy_score* | *0.72 – 0.95* | *Normal, narrow* | *Tidak* | *Tidak perlu* | *Sudah dalam [0,1], metode berbasis distance tidak digunakan* || | | | | | |
 | | | | | | |
 
-**Apakah normalisasi diperlukan?** [ ] Ya / [ ] Tidak
+**Apakah normalisasi diperlukan?** [ ] Ya / [☑] Tidak
 **Justifikasi:**
-> ___________________________________________________
+> Normalisasi tidak diperlukan karena analisis menggunakan Independent Samples t-test, yang tidak mensyaratkan data berada pada skala tertentu. Selain itu, seluruh variabel telah memiliki satuan yang konsisten dan tidak menunjukkan perbedaan skala yang ekstrem.
 
 **Leakage check:**
-- [ ] Parameter dihitung dari training set saja
-- [ ] Normalisasi diterapkan setelah train-test split
+- [☑]Tidak ada parameter normalisasi yang dihitung dari seluruh dataset.
+- [☑]Tidak ada proses normalisasi sebelum pemisahan data.
+- [☑]Tidak terjadi data leakage.
 
 ---
 
@@ -139,17 +142,25 @@ Buat ringkasan preprocessing lengkap — dokumentasi yang cukup bagi orang lain 
 
 ```
 PREPROCESSING SUMMARY
-
-1. Dataset: ____________________
-2. Data awal: ____ records, ____ features
+1. Dataset:
+   Hasil eksperimen TLS 1.3 dan DTLS pada protokol MQTT di perangkat IoT.
+2. Data awal:
+   10 records, 6 features
 3. Cleaning:
-   - Missing values: ____ kasus, metode: ____
-   - Duplikat: ____ kasus, tindakan: ____
-   - Error: ____ kasus, tindakan: ____
-4. Transformation: ____________________
-5. Normalisasi: ____ (metode), parameter dari ____
-6. Data akhir: ____ records, ____ features
-7. Leakage check: [ ] Lulus / [ ] Ada masalah
+   - Missing values : 0 kasus, tidak ada tindakan.
+   - Duplikat       : 0 kasus, seluruh Run ID unik.
+   - Error format   : 0 kasus, format CSV telah konsisten.
+4. Transformation:
+   - Konversi tipe data numerik ke format float.
+   - Standardisasi satuan memori ke KB.
+   - Penamaan kolom dibuat seragam.
+5. Normalisasi:
+   Tidak dilakukan karena analisis menggunakan Independent Samples t-test dan seluruh variabel telah berada pada skala yang konsisten.
+6. Data akhir:
+   10 records, 6 features
+7. Leakage Check:
+   ☑ Lulus
+   Tidak ditemukan data leakage selama proses preprocessing.
 ```
 
 ---
@@ -158,5 +169,5 @@ PREPROCESSING SUMMARY
 
 > Apakah Anda pernah melakukan normalisasi "karena biasa dilakukan" tanpa mempertimbangkan apakah benar-benar diperlukan? Apa risiko over-preprocessing?
 
-> ___________________________________________________
-> ___________________________________________________
+>Pada beberapa tugas sebelumnya, normalisasi sering diterapkan secara otomatis tanpa mempertimbangkan kebutuhan metode analisis yang digunakan. Setelah mempelajari materi ini, dipahami bahwa normalisasi hanya dilakukan jika memang diperlukan oleh algoritma atau metode statistik tertentu.
+>Over-preprocessing dapat mengubah karakteristik asli data sehingga hasil analisis menjadi kurang representatif. Selain itu, transformasi yang tidak diperlukan dapat mengurangi interpretabilitas data, memperkenalkan bias, atau bahkan menyebabkan data leakage apabila parameter preprocessing dihitung menggunakan seluruh dataset sebelum pemisahan data. Oleh karena itu, setiap langkah preprocessing harus memiliki alasan yang jelas, terdokumentasi, dan dapat direplikasi.
