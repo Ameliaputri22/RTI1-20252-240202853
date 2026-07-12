@@ -64,32 +64,32 @@ Jika gagal di langkah awal → tidak perlu lanjut.
 
 ```
 DATA VALIDATION CHECKLIST
+Completeness
+☑ Semua skenario tercakup
+☑ Jumlah run sesuai rencana
+☑ Tidak ada file output hilang
+Missing: 0 dari 10 data
 
-Completeness:
-  [ ] Semua skenario tercakup
-  [ ] Jumlah run sesuai rencana
-  [ ] Tidak ada file output hilang
-  Missing: ____ dari ____ data points
+Format Consistency
+☑ Semua file menggunakan format CSV
+☑ Header konsisten
+☑ Seluruh kolom numerik bertipe numerik
+Range & Logic
+☑ Latency > 0 ms
+☑ Tidak ada waktu negatif
+☑ Memory Usage berada dalam batas kapasitas ESP8266 (<64 KB)
+☑ CPU Usage dan Packet Loss berada pada rentang yang valid
+Anomali ditemukan:
+1 nilai latensi tinggi pada Run 4 (27.9 ms), diduga dipengaruhi kondisi jaringan sementara.
+Cross Validation
+☑ Run dengan parameter identik menghasilkan nilai yang relatif serupa.
+☑ Hasil sesuai dengan teori bahwa TLS 1.3 dan DTLS memiliki karakteristik performa yang berbeda pada perangkat IoT.
 
-Format Consistency:
-  [ ] Semua file format sama (CSV/JSON/...)
-  [ ] Header konsisten
-  [ ] Tipe data konsisten (numerik tetap numerik)
+Keputusan
+☑ Data siap dianalisis
+☐ Perlu cleaning
+☐ Perlu re-run
 
-Range & Logic:
-  [ ] Nilai dalam range masuk akal
-  [ ] Tidak ada waktu negatif
-  [ ] Metrik 0–100%, tidak di luar range
-  Anomali ditemukan: ____________________
-
-Cross-Validation:
-  [ ] Run identik → hasil mendekati
-  [ ] Trend konsisten dengan ekspektasi teori
-
-Keputusan:
-  [ ] Data siap analisis
-  [ ] Perlu cleaning
-  [ ] Perlu re-run (skenario: ____)
 ```
 
 ---
@@ -100,16 +100,13 @@ Verifikasi apakah semua data yang direncanakan sudah terkumpul.
 
 | Skenario | Run Direncanakan | Run Tercatat | Missing | Alasan |
 |----------|-----------------|-------------|---------|--------|
-| *Contoh: BERT, DS-1* | *10* | *10* | *0* | *—* |
-| *LSTM, DS-3* | *10* | *8* | *2* | *OOM pada run 7 & 9* |
-| | | | | |
-| | | | | |
+|TLS (Control)	|5	|5	|0|	—|
+|TLS 1.3 (Treatment)	|5	|5	|0	|—|
 
-**Total expected:** ____ | **Total actual:** ____ | **Missing:** ____
+**Total expected:** 10 run | **Total actual:** 10 run| **Missing:** 10 run
 
 **Keputusan untuk data missing:**
-> ___________________________________________________
-
+> Tidak terdapat data yang hilang. Seluruh skenario dan jumlah run telah sesuai dengan execution plan sehingga tidak diperlukan pengulangan eksperimen karena kehilangan data.
 ---
 
 ## Latihan 2 — Anomaly Investigation
@@ -120,23 +117,30 @@ Periksa data Anda untuk anomali. Gunakan metode IQR atau z-score.
 
 | Run | Accuracy (%) |
 |-----|-------------|
-| 1 | *91.2* |
-| 2 | *90.8* |
-| 3 | *91.5* |
-| 4 | *78.3* |
-| 5 | *91.0* |
+|1    |18.5|
+|2	  |18.7|
+|3	  |18.6|
+|4	  |27.9|
+|5	  |18.4|
 
 **Deteksi outlier:**
-- Q1 = ____ | Q3 = ____ | IQR = ____
-- Batas bawah (Q1 - 1.5×IQR) = ____
-- Batas atas (Q3 + 1.5×IQR) = ____
-- Outlier terdeteksi: ____
+Data terurut:
+18.4, 18.5, 18.6, 18.7, 27.9
+Q1 = 18.5
+Q3 = 18.7
+IQR = 0.2
+Batas bawah
+18.5 − (1.5 × 0.2) = 18.2
+Batas atas
+18.7 + (1.5 × 0.2) = 19.0
+Outlier terdeteksi
+Run 4 (27.9 ms)
 
 **Investigasi (untuk setiap outlier):**
 
 | Outlier | Nilai | Kemungkinan Penyebab | Keputusan |
 |---------|-------|---------------------|-----------|
-| *Run 4* | *78.3* | *Contoh: thermal throttling setelah 3 run berturut* | *Re-run dengan cooling interval* |
+| *Run 4* |27.9 ms|Gangguan jaringan atau proses handshake ulang sehingga latensi meningkat|Tidak langsung dihapus. Dilakukan investigasi terhadap log jaringan dan pengulangan (re-run) menggunakan seed yang sama.|
 
 ---
 
@@ -144,12 +148,25 @@ Periksa data Anda untuk anomali. Gunakan metode IQR atau z-score.
 
 Buat laporan validasi ringkas untuk dataset eksperimen Anda.
 
-**1. Completeness:** ____% data terkumpul
-**2. Format:** [ ] Konsisten / [ ] Ada inkonsistensi: ____
-**3. Range check (anomali):** ____
-**4. Logic check:** [ ] Parameter sesuai plan / [ ] Ada ketidaksesuaian: ____
+**1. Completeness:**100% data berhasil dikumpulkan (10 dari 10 run)% data terkumpul
+**2. Format:** [☑] Konsiste. Seluruh data disimpan dalam format CSV dengan struktur kolom yang sama pada setiap run.
+**3. Range check (anomali):** Seluruh nilai masih berada dalam rentang yang logis.
+Contoh:
+-Latency > 0 ms
+-Memory Usage < 64 KB
+-CPU Utilization 0–100%
+-Packet Loss 0–100%
+Ditemukan 1 nilai latensi yang tergolong outlier, namun masih valid secara teknis sehingga perlu investigasi, bukan langsung dihapus.
+**4. Logic check:** [☑ ] Parameter sesuai plan 
+Semua eksperimen menggunakan:
+-Payload 512 Byte
+-MQTT QoS 1
+-Hardware ESP8266
+-Seed sesuai rencana
+-Skenario DTLS dan TLS 1.3 tidak tercampur
 
-**Kesimpulan:** [ ] Data siap analisis / [ ] Perlu tindakan: ____
+**Kesimpulan:** [☑ ] Data siap analisis 
+Dataset telah memenuhi aspek completeness, consistency, accuracy, dan validity. Meskipun ditemukan satu nilai outlier pada metrik latensi, hasil tersebut telah didokumentasikan dan akan dipertimbangkan dalam analisis statistik tanpa dihapus secara langsung.
 
 ---
 
@@ -157,5 +174,5 @@ Buat laporan validasi ringkas untuk dataset eksperimen Anda.
 
 > Apa perbedaan antara "data yang benar" dan "data yang dipercaya"? Mengapa proses validasi formal diperlukan meskipun data dikumpulkan secara otomatis?
 
-> ___________________________________________________
-> ___________________________________________________
+> Data yang benar (correct data) adalah data yang tampak sesuai atau tidak mengandung kesalahan yang terlihat. Namun, data yang dipercaya (trusted data) adalah data yang telah melalui proses validasi sehingga terbukti lengkap, konsisten, berada dalam rentang yang masuk akal, dan sesuai dengan desain eksperimen.
+> Karena proses pencatatan otomatis tidak menjamin data bebas dari kesalahan. Bug pada sistem logging, konfigurasi yang keliru, kehilangan data, atau kondisi lingkungan yang tidak terkontrol dapat menghasilkan data yang menyesatkan. Oleh sebab itu, validasi formal diperlukan untuk memastikan bahwa data yang digunakan dalam analisis statistik benar-benar berkualitas dan dapat dipertanggungjawabkan secara ilmiah.
