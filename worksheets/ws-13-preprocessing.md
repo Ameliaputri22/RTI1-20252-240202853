@@ -79,9 +79,9 @@ Cleaning:
 Transformation:
 | Transformasi | Variabel | Detail | Alasan |
 |-------------|----------|--------|--------|
-|Konversi tipe data	Latency, Memory Usage	Dari string menjadi float	Memudahkan analisis statistik
-Standardisasi satuan	Memory Usage	Seluruh nilai menggunakan KB	Menjaga konsistensi data
-Penamaan variabel	Semua kolom	Menggunakan nama kolom yang seragam	Mempermudah proses analisis
+|Konversi tipe data|Latency, Memory Usage|Dari string menjadi float|Memudahkan analisis statistik|
+Standardisasi satuan|Memory Usage|Seluruh nilai menggunakan KB|Menjaga konsistensi data|
+Penamaan variabel|Semua kolom|Menggunakan nama kolom yang seragam|Mempermudah proses analisis|
 
 Normalization:
   Metode    :Tidak dilakukan
@@ -93,8 +93,8 @@ Leakage Check:
   [☑] Tidak ada informasi test set dalam preprocessing
   [☑] Cross-validation dilakukan setelah split
 
-Jumlah data akhir : 
-Script tersedia   : [ ] Ya → path: ____ |
+Jumlah data akhir : 10 records
+Script tersedia   : ☑ Ya → preprocessing.py
 ```
 
 ---
@@ -105,14 +105,13 @@ Periksa dataset Anda (atau dataset contoh) dan dokumentasikan masalah yang ditem
 
 | Masalah | Jumlah Kasus | Penanganan | Justifikasi |
 |---------|-------------|------------|-------------|
-| *Contoh: Missing di kolom "label"* | *12 dari 500 (2.4%)* | *Listwise deletion* | *< 5%, distribusi random (MCAR)* |
-| | | | |
-| | | | |
-| | | | |
+|Missing value|0|Tidak ada|Semua data lengkap|
+|Data duplikat|0|Tidak ada|Run ID berbeda untuk setiap eksperimen|
+|Error format|0|Tidak ada|Format CSV telah sesuai|
 
-**Jumlah data sebelum cleaning:** ____
-**Jumlah data setelah cleaning:** ____
-**Persentase data yang hilang/berubah:** ____%
+**Jumlah data sebelum cleaning:** 10
+**Jumlah data setelah cleaning:** 10
+**Persentase data yang hilang/berubah:** 0%
 
 ---
 
@@ -122,8 +121,9 @@ Tentukan apakah data Anda perlu normalisasi, dan jika ya, metode apa yang tepat.
 
 | Variabel | Range Asli | Distribusi | Outlier? | Metode Normalisasi | Alasan |
 |----------|-----------|-----------|----------|-------------------|--------|
-| *Contoh: response_time* | *0.1 – 45.2s* | *Right-skewed* | *Ya (45.2s)* | *Robust scaling* | *Ada outlier, perlu robust* || *Contoh: accuracy_score* | *0.72 – 0.95* | *Normal, narrow* | *Tidak* | *Tidak perlu* | *Sudah dalam [0,1], metode berbasis distance tidak digunakan* || | | | | | |
-| | | | | | |
+|Latency (ms)|17.8 – 19.3|Hampir normal|Tidak|Tidak perlu|Uji statistik menggunakan data asli agar hasil mudah diinterpretasikan|
+|Memory Usage (KB)	28.4 – 31.2|Hampir normal|Tidak|Tidak perlu|Semua data berada pada rentang yang seragam|
+|Throughput (KB/s)|56 – 61|Hampir normal|Tidak|Tidak perlu|Tidak digunakan algoritma berbasis jarak|
 
 **Apakah normalisasi diperlukan?** [ ] Ya / [☑] Tidak
 **Justifikasi:**
