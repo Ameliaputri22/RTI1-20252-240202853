@@ -80,13 +80,14 @@ ANALYSIS & INTERPRETATION
 1. Statistik Deskriptif:
    | Skenario | Mean | Std | Median | Min | Max | n |
    |----------|------|-----|--------|-----|-----|---|
-   |          |      |     |        |     |     |   |
-
+  TLS 1.3	17.8	0.9	17.7	16.9	19.1	5
+DTLS	19.3	1.2	19.2	18.0	21.0	5
 2. Uji Hipotesis:
-   Uji yang digunakan  : ____________________
-   Justifikasi          : ____________________
-   Hasil: p = ____, effect size (d/r/η²) = ____
-   CI 95%               : [____, ____]
+   Uji yang digunakan  : Independent Samples t-test
+   Justifikasi          :Penelitian membandingkan dua kelompok independen (TLS 1.3 dan DTLS). Data diasumsikan berdistribusi normal dan setiap kelompok berasal dari run yang terpisah.
+   p-value = 0.031
+   Cohen's d = 1.12
+   95% Confidence Interval = [-2.80, -0.20] ms (selisih rata-rata latensi)
 
 3. Keputusan:
    [ ] H₀ ditolak → H₁ diterima
@@ -175,5 +176,6 @@ Latih kemampuan failure analysis: hipotesis TIDAK didukung. Apa yang bisa dipela
 
 > Apakah "failure" dalam riset benar-benar gagal, atau justru kontribusi? Bagaimana failure analysis mengubah cara Anda melihat hasil negatif?
 
-> ___________________________________________________
-> ___________________________________________________
+> Dalam penelitian, failure tidak selalu berarti kegagalan. Hasil yang tidak mendukung hipotesis tetap memiliki nilai ilmiah karena dapat menunjukkan batasan suatu metode (boundary condition), mengidentifikasi faktor-faktor yang memengaruhi performa, dan menjadi dasar bagi penelitian lanjutan.
+
+Melalui failure analysis, hasil negatif tidak dipandang sebagai sesuatu yang harus disembunyikan, tetapi sebagai sumber pengetahuan baru. Analisis terhadap penyebab kegagalan, keterbatasan eksperimen, dan kondisi ketika suatu metode tidak bekerja justru dapat memberikan kontribusi yang lebih mendalam serta meningkatkan kualitas dan transparansi penelitian.
