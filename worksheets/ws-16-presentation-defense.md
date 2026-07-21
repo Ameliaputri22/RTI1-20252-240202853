@@ -86,26 +86,31 @@ Prediksi pertanyaan berdasarkan kategori:
 DEFENSE PREPARATION
 
 Slide Deck Plan:
-  Total slides   : ____ (target: 10-12 konten + title/closing)
-  Time per slide : ~2 min
-  Total time     : ____ menit
+  Total slides : 9 slide utama
+  Time per slide : ±1,5–2 menit
+  Total waktu : ±15 menit
 
 Slide Outline:
 | # | Pesan Utama | Visual | Waktu |
 |---|-------------|--------|-------|
-| 1 | Title       |        | 30s   |
-| 2 | Problem     |        | 2min  |
-| 3 | Gap + RQ    |        | 2min  |
-| ..|             |        |       |
+1	Judul penelitian dan latar belakang singkat	Cover + ilustrasi IoT	1 menit
+2	Permasalahan penelitian	Diagram komunikasi MQTT dan isu keamanan	2 menit
+3	Research Gap dan Research Question	Tabel penelitian terdahulu + RQ	1,5 menit
+4	Metode penelitian	Diagram alur eksperimen dan blok sistem	2 menit
+5	Hasil utama (tabel)	Tabel perbandingan TLS 1.3 dan DTLS	2 menit
+6	Hasil utama (grafik)	Bar chart dan box plot	2 menit
+7	Interpretasi hasil dan keterbatasan	Diagram hubungan hasil dengan teori	2 menit
+8	Limitasi dan penelitian selanjutnya	Daftar poin + diagram future work	1,5 menit
+9	Kesimpulan dan kontribusi	Ringkasan hasil penelitian	1 menit
 
 Anticipatory Defense Matrix:
 | Kategori | Pertanyaan Potensial | Jawaban (CER) |
 |----------|---------------------|---------------|
-| Problem  |                     |               |
-| Gap      |                     |               |
-| Method   |                     |               |
-| Results  |                     |               |
-| Generalization |               |               |
+|Problem|Mengapa memilih keamanan MQTT pada IoT?|Claim: MQTT banyak digunakan pada IoT sehingga keamanan komunikasi penting. Evidence: MQTT digunakan pada perangkat dengan sumber daya terbatas yang rentan terhadap serangan. Reasoning: Perbandingan TLS 1.3 dan DTLS membantu menentukan protokol yang lebih efisien.|
+|Gap|Bukankah TLS dan DTLS sudah sering dibandingkan?|Claim: Perbandingan pada perangkat IoT dengan RAM <64 KB masih terbatas. Evidence: Literatur lebih banyak berfokus pada komputer atau server. Reasoning: Penelitian ini mengisi kesenjangan pada perangkat IoT berdaya rendah.|
+|Method|Mengapa menggunakan ESP8266?|Claim: ESP8266 mewakili perangkat IoT dengan sumber daya terbatas. Evidence: RAM kurang dari 64 KB dan banyak digunakan dalam aplikasi IoT. Reasoning: Hasil lebih relevan untuk implementasi IoT sederhana.|
+|ResultsMengapa TLS 1.3 memiliki latensi lebih rendah?|Claim: TLS 1.3 mengurangi jumlah proses handshake. Evidence: Hasil menunjukkan rata-rata latensi lebih rendah dibandingkan DTLS. Reasoning: Pengurangan overhead komunikasi meningkatkan efisiensi.|
+|Generalization|Apakah hasil dapat diterapkan pada semua perangkat IoT?|Claim: Belum sepenuhnya. Evidence: Eksperimen hanya menggunakan ESP8266. Reasoning: Pengujian pada perangkat lain diperlukan untuk meningkatkan validitas eksternal.|
 
 Latihan:
   Latihan 1: [tanggal] — [catatan timing & feedback]
@@ -121,17 +126,16 @@ Rencanakan presentasi 15 menit untuk riset Anda.
 
 | # | Pesan Utama | Visual yang Digunakan | Waktu |
 |---|-------------|----------------------|-------|
-| 1 | *Contoh: Judul + konteks — rekomendasi vs kepuasan* | *Title slide, gambar sistem* | *1 min* |
-| 2 | *Contoh: Problem — RMSE tinggi tapi satisfaction rendah (45/100)* | *Bar chart: satisfaction vs RMSE per sistem* | *2 min* |
-| 3 | *Contoh: Gap + RQ — belum ada CF+context untuk satisfaction* | *Tabel gap literatur* | *1.5 min* |
-| 4 | | | |
-| 5 | | | |
-| 6 | | | |
-| 7 | | | |
-| 8 | | | |
-| 9 | | | |
-
-**Total waktu estimasi:** ____ menit
+|1|Judul penelitian dan tujuan|Cover penelitian|1 menit|
+|2|Permasalahan keamanan MQTT pada IoT|Diagram komunikasi MQTT|2 menit|
+|3|Research Gap dan Research Question|Tabel gap penelitian|1,5 menit|
+|4|Metode penelitian dan desain eksperimen|Flowchart dan diagram blok sistem|2 menit|
+|5|Hasil pengujian|Tabel hasil eksperimen|2 menit|
+|6|Visualisasi hasil|Bar chart dan box plot|2 menit|
+|7|Interpretasi hasil dan keterbatasan|Diagram hubungan hasil dengan teori|2 menit|
+|8|Future work|Diagram pengembangan penelitian|1,5 menit|
+|9|Kesimpulan dan kontribusi|Ringkasan poin utama|1 menit|
+**Total waktu estimasi:** 15 menit
 
 ---
 
@@ -141,11 +145,11 @@ Prediksi 5 pertanyaan yang mungkin diajukan penguji, lalu siapkan jawaban CER.
 
 | # | Kategori | Pertanyaan | Claim | Evidence | Reasoning |
 |---|----------|-----------|-------|----------|-----------|
-| 1 | *Problem* | *Contoh: Mengapa fokus kepuasan, bukan akurasi?* | *Akurasi tinggi tidak menjamin kepuasan* | *Survey: 45/100 satisfaction meski RMSE 0.87* | *Gap antara metrik teknis dan pengalaman pengguna* |
-| 2 | *Method* | *Contoh: Mengapa hanya 3 dataset?* | *3 dataset mewakili variasi: small-clean, medium-clean, medium-noisy* | *Tabel karakteristik dataset di Bab Method* | *Generalisasi perlu validasi lanjut — tercatat sebagai limitasi* |
-| 3 | | | | | |
-| 4 | | | | | |
-| 5 | | | | | |
+1	Problem	Mengapa memilih MQTT?	MQTT merupakan protokol yang banyak digunakan pada IoT.	MQTT ringan dan sesuai untuk perangkat dengan sumber daya terbatas.	Oleh karena itu, keamanan MQTT menjadi penting untuk diteliti.
+2	Method	Mengapa menggunakan ESP8266?	ESP8266 mewakili perangkat IoT berbiaya rendah.	Memiliki RAM <64 KB dan banyak digunakan dalam implementasi IoT.	Hasil penelitian relevan dengan kondisi nyata pada perangkat IoT sederhana.
+3	Method	Mengapa menggunakan Independent Samples t-test?	Karena membandingkan dua kelompok independen.	Eksperimen terdiri atas kelompok TLS 1.3 dan DTLS yang berbeda.	Uji ini sesuai untuk mengetahui apakah terdapat perbedaan rata-rata yang signifikan.
+4	Results	Mengapa TLS 1.3 lebih baik?	TLS 1.3 memiliki latensi dan penggunaan memori yang lebih rendah.	Berdasarkan hasil eksperimen, rata-rata latensi dan memori lebih kecil dibandingkan DTLS.	Hal tersebut menunjukkan TLS 1.3 lebih efisien pada kondisi pengujian yang dilakukan.
+5	Generalization	Apakah hasil berlaku untuk semua perangkat IoT?	Belum tentu.	Pengujian hanya dilakukan pada ESP8266.
 
 ---
 
@@ -154,15 +158,16 @@ Prediksi 5 pertanyaan yang mungkin diajukan penguji, lalu siapkan jawaban CER.
 Minta teman/kolega mengajukan 3 pertanyaan tentang riset Anda. Catat pertanyaan dan evaluasi jawaban Anda.
 
 | # | Pertanyaan | Jawaban Saya | Evaluasi |
-|---|-----------|-------------|---------|| *1* | *Contoh: "Mengapa tidak membandingkan dengan metode Y?"* | *Contoh: "Karena Y memerlukan dataset labeled yang tidak tersedia. Disebutkan sebagai limitasi di halaman X."* | *[✓] Direct [✓] Data-based [✓] Honest* || 1 | | | [ ] Direct [ ] Data-based [ ] Honest |
-| 2 | | | [ ] Direct [ ] Data-based [ ] Honest |
-| 3 | | | [ ] Direct [ ] Data-based [ ] Honest |
+|---|-----------|-------------|---------|
+|1|	Mengapa tidak menggunakan Raspberry Pi?|Karena penelitian berfokus pada perangkat dengan sumber daya terbatas. ESP8266 lebih mewakili mikrokontroler IoT dibandingkan Raspberry Pi yang memiliki spesifikasi jauh lebih tinggi|☑ Direct ☑ Data-based ☑ Honest|
+|2|Mengapa hanya menggunakan dua metrik?|Latensi dan penggunaan memori dipilih karena sesuai dengan Research Question. Metrik lain seperti throughput dan CPU utilization direkomendasikan sebagai penelitian lanjutan.|☑ Direct ☑ Data-based ☑ Honest|
+|3|Bagaimana jika hasil tidak signifikan?|Hasil tersebut tetap merupakan temuan ilmiah. Penelitian akan menganalisis penyebabnya, menjelaskan batasan metode, dan menyampaikan rekomendasi untuk penelitian berikutnya.|☑ Direct ☑ Data-based ☑ Honest|
 
 **Pertanyaan yang paling sulit dijawab:**
-> ___________________________________________________
+>Bagaimana hasil penelitian dapat digeneralisasikan pada berbagai jenis perangkat IoT dengan spesifikasi yang berbeda?
 
 **Apa yang perlu disiapkan lebih baik:**
-> ___________________________________________________
+> Menyiapkan referensi tambahan mengenai implementasi TLS 1.3 dan DTLS pada berbagai platform IoT serta memahami keterbatasan penelitian secara lebih mendalam agar dapat memberikan jawaban yang didukung oleh bukti.
 
 ---
 
@@ -171,7 +176,7 @@ Minta teman/kolega mengajukan 3 pertanyaan tentang riset Anda. Catat pertanyaan 
 > Dari seluruh proses WS-01 sampai WS-16 — dari paradigma riset hingga presentasi — bagian mana yang paling mengubah cara Anda berpikir tentang riset? Apa satu hal yang akan selalu Anda terapkan di riset berikutnya?
 
 **Insight terbesar:**
-> ___________________________________________________
+> Seluruh rangkaian WS-01 hingga WS-16 menunjukkan bahwa penelitian bukan hanya tentang memperoleh hasil yang baik, tetapi tentang menyusun argumen ilmiah yang sistematis, mulai dari identifikasi masalah, penyusunan pertanyaan penelitian, desain eksperimen yang adil, validasi data, analisis yang tepat, hingga kemampuan mempertanggungjawabkan hasil melalui presentasi dan sesi tanya jawab.
 
 **Yang akan selalu diterapkan:**
-> ___________________________________________________
+> Pada penelitian berikutnya, saya akan selalu menyusun Research Question yang jelas, merancang eksperimen dengan variabel yang terkontrol, melakukan multiple run, mendokumentasikan seluruh proses secara lengkap, serta mendukung setiap kesimpulan dengan data, analisis statistik, dan interpretasi yang sesuai. Dengan demikian, hasil penelitian menjadi lebih valid, transparan, dapat direplikasi, dan lebih mudah dipertahankan dalam presentasi maupun publikasi ilmiah.
